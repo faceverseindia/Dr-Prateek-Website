@@ -3574,7 +3574,8 @@
             <label class="consent"><input type="checkbox" id="cons"><span>I agree to be contacted about my enquiry. My details will only be used to arrange a consultation.</span></label>
             <p class="err" id="ferr"></p>
             <a class="btn" id="sendForm" href="#" role="button">Request a consultation</a>
-            <p class="formnote">Prefer to message? <a class="ln" href="https://wa.me/918384005197" style="color:var(--green);border-bottom:1px solid rgba(63,90,77,.3)">Send us a WhatsApp instead</a>.</p>
+            <a class="btn ghost" id="sendWa" href="#" role="button" style="width:100%;justify-content:center;margin-top:.6rem">Send on WhatsApp instead</a>
+            <p class="formnote">Either option reaches the clinic. WhatsApp is usually fastest.</p>
           </div>
           <div class="sent" id="fsent">
             <div class="tick" aria-hidden="true">&#10003;</div>
@@ -3600,13 +3601,8 @@
 
     <script>
     (function(){
-      /* ---------------------------------------------------------------
-         PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BETWEEN THE QUOTES.
-         It looks like: https://script.google.com/macros/s/AKfy..../exec
-      ----------------------------------------------------------------*/
       var SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxm0-lXMccveGOy3bfkQ5mKZbywCh0aXzvGN89FA154Ao_hO96QdoIv6yA4uVOFYPQN/exec';
-
-      var wa = 'https://wa.me/918384005197';
+      var wa  = 'https://wa.me/918384005197';
       var box = document.getElementById('cform');
       var btn = document.getElementById('sendForm');
       var err = document.getElementById('ferr');
@@ -3615,15 +3611,12 @@
       function val(id){ var el=document.getElementById(id); return el ? String(el.value||'').trim() : ''; }
       function mark(id,bad){ var el=document.getElementById(id); if(el&&el.parentNode) el.parentNode.classList.toggle('bad',!!bad); }
       function fail(m){ err.textContent=m; err.classList.add('show'); }
+      function reset(){ btn.textContent='Request a consultation'; btn.removeAttribute('disabled'); }
 
       function payload(){
-        return {
-          name: val('nm'), phone: val('ph'), email: val('em'),
-          clinic: val('loc'), interest: val('int'), message: val('msg'),
-          company: val('company'),
-          source: 'drprateeksharma.com contact form',
-          page: location.href
-        };
+        return { name:val('nm'), phone:val('ph'), email:val('em'), clinic:val('loc'),
+                 interest:val('int'), message:val('msg'), company:val('company'),
+                 source:'website contact form' };
       }
 
       function waFallback(d){
@@ -3641,37 +3634,72 @@
         var s=document.getElementById('fsent'); if(s) s.classList.add('show');
       }
 
+      /* A real form POST into a hidden iframe. Browsers permit this
+         cross-origin, so it works where fetch is blocked by CORS,
+         including from a file:// path. */
+      function sendViaIframe(d, onDone, onFail){
+        var frameName = 'ae_sink_' + Date.now();
+        var frame = document.createElement('iframe');
+        frame.name = frameName;
+        frame.style.display = 'none';
+        document.body.appendChild(frame);
+
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = SHEET_ENDPOINT;
+        form.target = frameName;
+        form.style.display = 'none';
+
+        for (var k in d){
+          if(!Object.prototype.hasOwnProperty.call(d,k)) continue;
+          var i = document.createElement('input');
+          i.type = 'hidden'; i.name = k; i.value = d[k];
+          form.appendChild(i);
+        }
+        document.body.appendChild(form);
+
+        var settled = false;
+        function finish(ok){
+          if(settled) return; settled = true;
+          setTimeout(function(){
+            try{ document.body.removeChild(form); }catch(e){}
+            try{ document.body.removeChild(frame); }catch(e){}
+          }, 1500);
+          ok ? onDone() : onFail();
+        }
+
+        frame.onload  = function(){ console.log('[form] submitted to sheet'); finish(true); };
+        frame.onerror = function(){ console.error('[form] iframe error'); finish(false); };
+        setTimeout(function(){ finish(true); }, 6000);   /* assume delivered */
+
+        form.submit();
+      }
+
+      var waBtn = document.getElementById('sendWa');
+      if(waBtn) waBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        var d = payload();
+        if(!d.name){ mark('nm',true); return fail('Please tell us your name first.'); }
+        waFallback(d); done();
+      });
+
       btn.addEventListener('click', function(e){
         e.preventDefault();
-        err.classList.remove('show');
-        mark('nm',false); mark('ph',false);
+        err.classList.remove('show'); mark('nm',false); mark('ph',false);
 
         var d = payload();
-        if(d.company){ done(); return; }                 /* honeypot: silently accept */
+        if(d.company){ done(); return; }
         if(!d.name){ mark('nm',true); return fail('Please tell us your name.'); }
         if(d.phone.replace(/[^0-9]/g,'').length < 8){ mark('ph',true); return fail('Please enter a phone number we can reach you on.'); }
         if(!document.getElementById('cons').checked){ return fail('Please tick the box so we know we may contact you.'); }
 
-        if(!SHEET_ENDPOINT){ waFallback(d); return done(); }
-
         btn.textContent = 'Sending...'; btn.setAttribute('disabled','disabled');
 
-        fetch(SHEET_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(d)
-        }).then(function(){ done(); })
-          .catch(function(){
-            /* opaque retry: still records the row even if CORS blocks the reply */
-            fetch(SHEET_ENDPOINT, { method:'POST', mode:'no-cors',
-              headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(d) })
-              .then(function(){ done(); })
-              .catch(function(){
-                btn.textContent='Request a consultation'; btn.removeAttribute('disabled');
-                fail('Something went wrong sending that. Please WhatsApp us instead.');
-                waFallback(d);
-              });
-          });
+        sendViaIframe(d, done, function(){
+          reset();
+          fail('We could not reach the booking system. Please use the WhatsApp button, it opens with your details ready.');
+          waFallback(d);
+        });
       });
     })();
     </script>
