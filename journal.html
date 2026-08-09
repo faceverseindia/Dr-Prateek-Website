@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="build" content="2026-08-09-multipage-v2">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-label%3D%22Dr%20Prateek%20Sharma%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%233f5a4d%22%2F%3E%3Cg%20stroke-linecap%3D%22round%22%3E%3Cline%20x1%3D%2218%22%20y1%3D%2225%22%20x2%3D%2246%22%20y2%3D%2225%22%20stroke%3D%22%23f4efe6%22%20stroke-width%3D%223.4%22%2F%3E%3Cline%20x1%3D%2215%22%20y1%3D%2233%22%20x2%3D%2249%22%20y2%3D%2233%22%20stroke%3D%22%23f4efe6%22%20stroke-width%3D%223.4%22%2F%3E%3Cline%20x1%3D%2211%22%20y1%3D%2241%22%20x2%3D%2253%22%20y2%3D%2241%22%20stroke%3D%22%23c8a463%22%20stroke-width%3D%224%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADcUlEQVR4nMWXQWhcVRSGv3POfTOZNIKFbCIimNaFiN12Y1vETReNJItZtHXVTRfSTTcuFRF01Y24667EgEEbTRbupEk3piBhoogoxYpNQEPBSJtx5t57XKRJOmkmmSST9F88Hrz7+L937n/PfVcAqtWqjY+PpzMXz76o2nPFcx5y9+NAAIT9yYEoIr+J6mTO9U9vjX7755qnrN28cf7ccBHCZ6r6QkoJz3mfvq0SVcyMnPNCM8Z3b49NTVSrVROA0+fPDYVS8Y2nTEo5imDs/8s3y91JZhrElNhovj09NjUppy6ODBipJir9KaUkiHXZuJUCT2Zmnn0pYSdUcrxqIfSnGA/cHEAQSzEmC6FfcryqiA+nlFxEu13y9hCiklJyxIcDzqDnLHR/zreTes7gDKqI6CEat0hE9JmZrynsNEBEENnb7Lg77r53ABGhGSONZoNdR8SdoigoFcW2EG0BBCGmRP/zR3lpYICUc8cIDgQzFv/+i8WlJYIaztYQbQFUhfrKf1y58A5vnT4L+SFoh23CM0gv8z/OcvnD9wlmtPFvD5DdqZTL3Jj8mjs/zRNjRDqsgeOEEPj9/n1C2D5mbZ+6O80YmfvlZ76frz0O4vaB2pDg7pSKQKXcQ7lUahvkbfFeO/4KRyoVWA/RblKwem00m/z6x73VCm4B8RSAqrJSr/Pq4DGuf/QxWAHkXZi3QkDBe598wHd3Zunr7SVv2ublzIWhlrqu2RQhcPL1E1R6elZf2kMrWFtJs/M1HtZXEBE2r8inKpAc6tGh0eCrWzM7NpKdIaC3p4KoUjYnqLQkKTw5MDkcKQmnXu6l3sygfV3ZoVLO9JWU2mKdB48yQTcmaANAoN7MvHmsj8snj/JvI9OtDTo7PFdWvqwtc+OHZYryxlSsA7hD2ZS5hTpf1JYfl8q78ke62j+c2/dWKAVachCeHBgUHjxKfD73T8dNp3MQp2RC0S4DGxBCYQfxb7JqvOMq2GrQQUrdvbsHgF3I3bMi3BVVZ7XdHZayqDrCXcVlwszEPR9a4d2zm5ngMqGu4VqKcclCMMfTgZvjyUKwFOOSa7imM6M3F3POl0QVUzN3Ip3vu7vydieamokqOedLM6M3F7Vardr02NRko9EcQWShKBVBtPuHFFGVolQERBYajebI9NjU5Prh9Fkez/8Hu1mg70y3j5gAAAAASUVORK5CYII=">
 <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAIJElEQVR4nO3c3W8cVxnH8ec5Z2Z3Zl/il7huQ15oaigvQSUhBqcSVQS9JUJRr1oqEbUSqAIBQuodcIEqcY+AQiUkLsqLkKBC9IoLUCAIR3XqvNgtUkkqpU3rEseuvd7Zmd2ZebiYJqDSB5JodmaS/X3+gZyMv54558wZ8+FHjhDAezFlDwCqC3GACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGACnGAyil7AO/GzIaZmEmk7LEUhZlEUhGp2H+5WnEYY+I47oShiBATE5c9oqETEhJiZr9er7lukqZlj+jfKhSHMWYrCMbb7c/OHdp9147Nra1O0DVsiKr1+5QfTiVteN7EtrG3rqz+7fTplSur7UYjrcz9oypxGGO6QfDAJw5+49Ev7t6xg5hJ6PbN4j8xMZHQ5bUrP/71L5//8/Gm51Wkj0rEYdgEvd59937oe1//Jhuz2ekQE43AM+UqIaF2s/ntJ77a7fX+eHK+1WymFXi+VCIOIiHmx44+5Lru5lbHsRUZVaH6/b415rGjD82fPVOFMqgKS1lm7g8Gu+688yP3zPTCcDTLICJrbdjv3/2+nfe+/+4wiowp/0dT/giIKBVpeH7Ndau2liueNabp+xWZc1QiDsfay+trG52ONWaU+zDMvShaWV11ra3CdSg/DhFxHefy2tqfXjjptVqDOK7CdSmYiPQHg2arNX/uzPnXX6vX6lW4COXHQe88Vryf/e65pZdfmti+3bG27BEVzVo7MTH5+huXfvSrX7iOI9VYw/PhR46UPQYiImYeDAYN3z/2+aOf+dTctmZLRJhv/9WskDBxN+zNnzn909/+5vL6mlerVWTOUZU4iIiZkyQJwt705Pbt4+MiMhpbHcJsNjqdN1b/6dXqNdetyDqWKrPPQUQkItbasVa7EwTrnc1ReLGSERLH2OxmWZ0yqFJxEJGIJCKOtSM47ahUFplqxZGpwkQdqCKrFagmxAEqxAEqxAEqxAEqxAGqMuNg5lHYIL9ppV+fcvY5so8P4jgWEWMtAvlvQpTEMTM7jpN9uFD8GEq4cxhjelG01e02fH+s3Ta4ebwXwzzWbjd8f6vb7ZV0MKzoO0d2yvzDe+/5wueO7Jv5oDVms7t19R0bNkYzTCTMvK3ZStJ0+fwrP3/+939/9UKz0Sh4i73Qt7LZlymHZz/53a98zfe8MIqIyFbgsGQ1ZR84efV6Lwy/88PvH194oVVsH8XdObITG9OTk08ee9xau9HZtMYSUVzYCG5NG/3I9/wnjz3+8oXzG52O4ziFvXsq7rfWsAnC8MG5+6enprJT5gzXwbFOLwynp6YenLs/CEPDBf7ICvuXsufozO49kqaMSeiNYGZJ05nde5gLnZkV+rwXkagfoYybwMxRPyr4MENxcQiRNWZheYlwYuMGZZdrYXnJGlPkhStuQpqmadNvnFh8cf7M6UMHZzfW13m0Poi9OSJCYxMT86cWTiy+2PRv09UKUfZBOT/1zNPf+tIThz6+H3sb14GJZP7UwlPPPM1Xv8cv7t8u+PS5Ye4PBkL06QMHZ/d9rF5zR+aU+Y0SZo76g4XlpROLp5io5roFb6KX8GlCNiHtBkGCZcv/IyLWmGajQWVM1Ep48Zb9J1vNJrq4HlLewfTSTp9X8CQ+vAvea4AKcYAKcYAKcYAKcYAKcYBqWEtZHp2/oFA2oWH9mfj84zBMqVAUS5IKERs0MjSpEJFYwzXL2WXPV85xGKYwFsu8d9K9q+0kKXUibHYNS7turKGVTnxxPe6LeA7n20eecRim3kA+MFU7uq+9Z8KtWRaR3HOGawwTM/cTubg+eG6584/Vvu/m2UduL94MUzCQ+3bUvzw3YQ2Fg3eeg3iqDM+1K+y5nKT0k5PrZ9+MGvn1kc+dg4nilMZ98/D+bUQUDMRiQjp8165wMJC65Yf3b7v49pWgL5bzOfWRz1KWmcJYZnf5dzSdKBZ831gwyxTFckfTmd3lh7HkdQ4inziEyDDNTLpJmtvI4IYwU5LKzKRrcrptUI6bYIbJcxmzzxIJkefmuXeQ02OFKElpLUixq1Eiw7QWpEma22wvtzsHMy2thDS03Tr437LLvrQS5vhYz2e1kgr5Dp9bic6+GR3Y6b3dSy1jFVsUoURo3DeLl8JzK5Gf31ZYfptgTEz87OJG3eGPTtf7icTY/yqEY7lm+aW3omcXN/L9fCG3OETIsdSN0h/8df2BvY0DO73JBpa0QydEa0G8eCn8y6tBKuJYzvGxnuf2uQhlg/vDK1vHL3SbdVP0Vzgjh4WkG6VRIg3XOCbPMij3F2/Z4Fo1I0JBX1DGkAkROYZdy6nkvxQYynmObLKBh0oxbqXzHNfgpnGrwzFBUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUCEOUP0L5wjJUyL4xLIAAAAASUVORK5CYII=">
@@ -32,11 +33,11 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
 <meta name="keywords" content="facelift, facelift surgeon, facelift surgeon delhi, facelift doctor, facelift in delhi, best facelift in delhi, deep plane facelift, deep plane facelift delhi, most advanced facelift, facial plastic surgeon delhi, Dr Prateek Sharma">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="author" content="Dr Prateek Sharma">
-<link rel="canonical" href="https://drprateeksharma.com/journal.html">
+<link rel="canonical" href="https://drprateeksharma.com/journal">
 <meta property="og:title" content="Facelift Guides &amp; Answers | Dr Prateek Sharma">
 <meta property="og:description" content="Plain, unhurried answers to the questions people actually ask before a facelift. Written by Dr Prateek Sharma, a facelift and facial plastic surgeon in…">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://drprateeksharma.com/journal.html">
+<meta property="og:url" content="https://drprateeksharma.com/journal">
 <meta property="og:site_name" content="Dr Prateek Sharma · Eveite &amp; Aloysia Eveite">
 <meta property="og:locale" content="en_IN">
 <meta property="og:image" content="https://drprateeksharma.com/og-image.jpg">
@@ -1000,23 +1001,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <header id="hdr">
     <div class="nav-in">
       <button class="menu-toggle" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span class="mt-ic" aria-hidden="true"><span></span><span></span></span><span class="mt-tx">Menu</span></button>
-      <a href="index.html" class="brand" aria-label="Home">
+      <a href="/" class="brand" aria-label="Home">
         <svg class="mk" viewBox="0 0 64 64" aria-hidden="true"><rect class="bd" width="64" height="64" rx="14"/><g stroke-linecap="round"><line x1="18" y1="25" x2="46" y2="25"/><line x1="15" y1="33" x2="49" y2="33"/><line class="dp" x1="11" y1="41" x2="53" y2="41"/></g></svg>
         <span class="wm">Dr Prateek Sharma<small>The Facelift Surgeon · New Delhi</small></span>
       </a>
       <nav id="nav">
         <div class="nav-head"><span class="nh-k">Menu</span><button class="nav-close" id="navClose" aria-label="Close menu">&#10005;</button></div>
-        <a href="index.html">Home</a>
-        <a href="about.html">The Surgeon</a>
-        <a href="the-facelift.html">The Facelift</a>
-        <a href="procedures.html">Procedures</a>
-        <a href="results.html">Results</a>
-        <a href="journal.html">Journal</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Home</a>
+        <a href="/best-facelift-surgeon-delhi">The Surgeon</a>
+        <a href="/the-facelift">The Facelift</a>
+        <a href="/procedures">Procedures</a>
+        <a href="/results">Results</a>
+        <a href="/journal">Journal</a>
+        <a href="/contact">Contact</a>
               <div class="nav-foot"><span class="nf-k">Speak to the clinic</span><a class="nf-wa" href="https://wa.me/918384005197?text=Hey%21%20I%20want%20to%20talk%20to%20Dr%20Prateek%20Sharma%20now.%20Please%20fix%20my%20appointment" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.24 8.24 0 0 1 0 16.48m4.52-6.17c-.25-.12-1.47-.72-1.69-.81s-.39-.12-.56.13-.64.81-.79.97-.29.19-.54.06a6.7 6.7 0 0 1-1.99-1.23 7.4 7.4 0 0 1-1.37-1.71c-.14-.25-.01-.38.11-.5s.25-.29.37-.44.17-.25.25-.41a.46.46 0 0 0-.02-.44c-.06-.12-.56-1.35-.77-1.85s-.4-.42-.56-.43h-.47a.9.9 0 0 0-.66.31 2.77 2.77 0 0 0-.86 2.06 4.8 4.8 0 0 0 1.01 2.56c.12.16 1.75 2.67 4.23 3.74a13 13 0 0 0 1.41.52 3.4 3.4 0 0 0 1.56.1 2.55 2.55 0 0 0 1.67-1.18 2.05 2.05 0 0 0 .15-1.18c-.06-.11-.22-.17-.47-.29"/></svg><span>Connect through WhatsApp</span></a><div class="nav-ig"><a href="https://instagram.com/thefaceliftsurgeon" target="_blank" rel="noopener">@thefaceliftsurgeon</a><a href="https://instagram.com/eveite_aesthetics" target="_blank" rel="noopener">@eveite_aesthetics</a><a href="https://instagram.com/ae.stheticsurgery" target="_blank" rel="noopener">@ae.stheticsurgery</a></div></div>
         <p class="nav-hint">Swipe left to close</p>
       </nav>
-      <a href="contact.html" class="btn nav-book">Book a consultation</a>
+      <a href="/contact" class="btn nav-book">Book a consultation</a>
     </div>
   </header>
 <main>
@@ -1027,7 +1028,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="dek reveal d1">Plain, unhurried answers to the questions people actually ask before a facelift. Written by Dr Prateek Sharma, a facelift and facial plastic surgeon in Delhi, India, so you can decide with clear eyes.</p>
     </section>
     <div class="jwrap">
-      <a class="feat reveal" href="what-is-a-deep-plane-facelift.html" aria-label="What is a deep plane facelift?">
+      <a class="feat reveal" href="/what-is-a-deep-plane-facelift" aria-label="What is a deep plane facelift?">
         <span class="fimg im-p1"><span class="tag">Start here</span></span>
         <span class="fb">
           <span class="meta">Technique<span class="dotmid">&middot;</span>7 min</span>
@@ -1041,7 +1042,142 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="jsplit"><h2>Technique</h2><span class="eyebrow">2 articles</span></div>
       <div class="jgrid">
-      <a class="jcard reveal" href="deep-plane-vs-smas-facelift.html">
+        <a class="jcard reveal" href="/blepharoplasty-delhi">
+          <span class="th im-p1"></span>
+          <span class="b">
+            <span class="meta">Procedure<span class="dotmid">&middot;</span>6 min</span>
+            <h3>Blepharoplasty in Delhi: eyelid surgery, explained</h3>
+            <p>Hooded upper lids and under-eye bags are structural, not tiredness. What eyelid surgery does, and what it does not.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/brow-lift-delhi">
+          <span class="th im-p2"></span>
+          <span class="b">
+            <span class="meta">Procedure<span class="dotmid">&middot;</span>5 min</span>
+            <h3>Brow lift in Delhi: when the brow, not the lid, is the problem</h3>
+            <p>A heavy brow is often mistaken for heavy eyelids. Treating the wrong one makes the face look worse.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/chin-and-jawline-delhi">
+          <span class="th im-p3"></span>
+          <span class="b">
+            <span class="meta">Procedure<span class="dotmid">&middot;</span>6 min</span>
+            <h3>Chin and jawline: where facial definition actually comes from</h3>
+            <p>A soft jawline is sometimes skin, sometimes fat, and sometimes a chin that was never projected enough. The treatment differs entirely.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/buccal-fat-removal-delhi">
+          <span class="th im-p4"></span>
+          <span class="b">
+            <span class="meta">Procedure<span class="dotmid">&middot;</span>5 min</span>
+            <h3>Buccal fat removal: a small operation with long consequences</h3>
+            <p>It can sharpen the mid-face in the right patient. In the wrong one it accelerates the hollowing that comes with age.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/facial-fat-grafting-delhi">
+          <span class="th im-p1"></span>
+          <span class="b">
+            <span class="meta">Procedure<span class="dotmid">&middot;</span>6 min</span>
+            <h3>Facial fat grafting: restoring what the face has lost</h3>
+            <p>Ageing is deflation as much as descent. Fat grafting addresses the half that lifting cannot.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/lip-lift-delhi">
+          <span class="th im-p2"></span>
+          <span class="b">
+            <span class="meta">Procedure<span class="dotmid">&middot;</span>5 min</span>
+            <h3>Lip lift: changing proportion, not adding volume</h3>
+            <p>A long upper lip cannot be corrected with filler. Shortening it changes the whole balance of the lower face.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/otoplasty-delhi">
+          <span class="th im-p3"></span>
+          <span class="b">
+            <span class="meta">Procedure<span class="dotmid">&middot;</span>5 min</span>
+            <h3>Otoplasty: correcting prominent ears, in children and adults</h3>
+            <p>Prominent ears are a cartilage shape problem, present from birth. The correction is reliable and long established.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/revision-facelift">
+          <span class="th im-p4"></span>
+          <span class="b">
+            <span class="meta">Considering<span class="dotmid">&middot;</span>6 min</span>
+            <h3>Revision facelift: when a previous operation needs correcting</h3>
+            <p>A second facelift is a different operation from a first. What can be improved, what cannot, and when to wait.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/deep-neck-lift-delhi">
+          <span class="th im-p1"></span>
+          <span class="b">
+            <span class="meta">Procedure<span class="dotmid">&middot;</span>6 min</span>
+            <h3>Deep neck lift: working beneath the muscle, not above it</h3>
+            <p>Some necks do not improve with skin tightening or liposuction because the problem sits deeper than either reaches.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/ponytail-facelift">
+          <span class="th im-p2"></span>
+          <span class="b">
+            <span class="meta">Technique<span class="dotmid">&middot;</span>5 min</span>
+            <h3>The ponytail facelift: marketing term, real technique, honest limits</h3>
+            <p>A widely marketed name for a genuine but limited operation. Who it suits, and who is being sold it wrongly.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/facelift-swelling-timeline">
+          <span class="th im-p3"></span>
+          <span class="b">
+            <span class="meta">Recovery<span class="dotmid">&middot;</span>5 min</span>
+            <h3>Facelift swelling: what is normal, week by week</h3>
+            <p>Swelling follows a predictable arc, and knowing it prevents a great deal of unnecessary worry.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/ozempic-face-treatment-delhi">
+          <span class="th im-p4"></span>
+          <span class="b">
+            <span class="meta">Considering<span class="dotmid">&middot;</span>5 min</span>
+            <h3>"Ozempic face": what rapid weight loss does to the face</h3>
+            <p>Rapid weight loss removes facial fat that was holding the face up. The correction is usually volume, not tightening.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/facelift-for-nri-patients">
+          <span class="th im-p1"></span>
+          <span class="b">
+            <span class="meta">Planning<span class="dotmid">&middot;</span>6 min</span>
+            <h3>Planning a facelift in India from abroad</h3>
+            <p>For patients travelling from the Gulf, the UK, the US or elsewhere, the planning matters as much as the surgery.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/facelift-vs-botox-and-fillers">
+          <span class="th im-p2"></span>
+          <span class="b">
+            <span class="meta">Comparison<span class="dotmid">&middot;</span>6 min</span>
+            <h3>Facelift, botox or fillers: three different tools, three different problems</h3>
+            <p>They are not competing options on a scale of intensity. They address entirely different mechanisms of ageing.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+        <a class="jcard reveal" href="/questions-to-ask-your-facelift-surgeon">
+          <span class="th im-p3"></span>
+          <span class="b">
+            <span class="meta">Choosing<span class="dotmid">&middot;</span>6 min</span>
+            <h3>The questions worth asking your facelift surgeon</h3>
+            <p>Most consultations are spent listening. These are the questions that tell you what you actually need to know.</p>
+            <span class="rt">Read article &rarr;</span>
+          </span>
+        </a>
+      <a class="jcard reveal" href="/deep-plane-vs-smas-facelift">
         <span class="th im-p4"></span>
         <span class="b">
           <span class="meta">Technique<span class="dotmid">&middot;</span>7 min</span>
@@ -1050,7 +1186,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rt">Read article &rarr;</span>
         </span>
       </a>
-      <a class="jcard reveal" href="types-of-facelift.html">
+      <a class="jcard reveal" href="/types-of-facelift">
         <span class="th im-p4"></span>
         <span class="b">
           <span class="meta">Technique<span class="dotmid">&middot;</span>8 min</span>
@@ -1062,7 +1198,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="jsplit"><h2>Delhi</h2><span class="eyebrow">1 article</span></div>
       <div class="jgrid">
-      <a class="jcard reveal" href="facelift-surgery-in-delhi.html">
+      <a class="jcard reveal" href="/facelift-surgery-in-delhi">
         <span class="th im-p1"></span>
         <span class="b">
           <span class="meta">Delhi<span class="dotmid">&middot;</span>8 min</span>
@@ -1074,7 +1210,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="jsplit"><h2>Guide</h2><span class="eyebrow">2 articles</span></div>
       <div class="jgrid">
-      <a class="jcard reveal" href="facelift-surgeon-in-delhi.html">
+      <a class="jcard reveal" href="/facelift-surgeon-in-delhi">
         <span class="th im-p3"></span>
         <span class="b">
           <span class="meta">Guide<span class="dotmid">&middot;</span>6 min</span>
@@ -1083,7 +1219,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rt">Read article &rarr;</span>
         </span>
       </a>
-      <a class="jcard reveal" href="best-facelift-surgeon-in-india.html">
+      <a class="jcard reveal" href="/best-facelift-surgeon-in-india">
         <span class="th im-p3"></span>
         <span class="b">
           <span class="meta">Guide<span class="dotmid">&middot;</span>7 min</span>
@@ -1095,7 +1231,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="jsplit"><h2>Options</h2><span class="eyebrow">3 articles</span></div>
       <div class="jgrid">
-      <a class="jcard reveal" href="facelift-vs-thread-lift.html">
+      <a class="jcard reveal" href="/facelift-vs-thread-lift">
         <span class="th im-p2"></span>
         <span class="b">
           <span class="meta">Options<span class="dotmid">&middot;</span>6 min</span>
@@ -1104,7 +1240,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rt">Read article &rarr;</span>
         </span>
       </a>
-      <a class="jcard reveal" href="mini-facelift-vs-full-facelift.html">
+      <a class="jcard reveal" href="/mini-facelift-vs-full-facelift">
         <span class="th im-p2"></span>
         <span class="b">
           <span class="meta">Options<span class="dotmid">&middot;</span>6 min</span>
@@ -1113,7 +1249,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rt">Read article &rarr;</span>
         </span>
       </a>
-      <a class="jcard reveal" href="non-surgical-facelift-options.html">
+      <a class="jcard reveal" href="/non-surgical-facelift-options">
         <span class="th im-p1"></span>
         <span class="b">
           <span class="meta">Options<span class="dotmid">&middot;</span>7 min</span>
@@ -1125,7 +1261,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="jsplit"><h2>Procedure</h2><span class="eyebrow">1 article</span></div>
       <div class="jgrid">
-      <a class="jcard reveal" href="neck-lift-and-jawline.html">
+      <a class="jcard reveal" href="/neck-lift-and-jawline">
         <span class="th im-p2"></span>
         <span class="b">
           <span class="meta">Procedure<span class="dotmid">&middot;</span>6 min</span>
@@ -1137,7 +1273,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="jsplit"><h2>Candidacy</h2><span class="eyebrow">2 articles</span></div>
       <div class="jgrid">
-      <a class="jcard reveal" href="best-age-for-a-facelift.html">
+      <a class="jcard reveal" href="/best-age-for-a-facelift">
         <span class="th im-p4"></span>
         <span class="b">
           <span class="meta">Candidacy<span class="dotmid">&middot;</span>4 min</span>
@@ -1146,7 +1282,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rt">Read article &rarr;</span>
         </span>
       </a>
-      <a class="jcard reveal" href="facelift-for-men.html">
+      <a class="jcard reveal" href="/facelift-for-men">
         <span class="th im-p3"></span>
         <span class="b">
           <span class="meta">Candidacy<span class="dotmid">&middot;</span>5 min</span>
@@ -1158,7 +1294,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="jsplit"><h2>Results</h2><span class="eyebrow">2 articles</span></div>
       <div class="jgrid">
-      <a class="jcard reveal" href="how-long-does-a-facelift-last.html">
+      <a class="jcard reveal" href="/how-long-does-a-facelift-last">
         <span class="th im-p2"></span>
         <span class="b">
           <span class="meta">Results<span class="dotmid">&middot;</span>5 min</span>
@@ -1167,7 +1303,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rt">Read article &rarr;</span>
         </span>
       </a>
-      <a class="jcard reveal" href="facelift-before-and-after.html">
+      <a class="jcard reveal" href="/facelift-before-and-after">
         <span class="th im-p2"></span>
         <span class="b">
           <span class="meta">Results<span class="dotmid">&middot;</span>5 min</span>
@@ -1179,7 +1315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="jsplit"><h2>Recovery</h2><span class="eyebrow">3 articles</span></div>
       <div class="jgrid">
-      <a class="jcard reveal" href="facelift-recovery-time.html">
+      <a class="jcard reveal" href="/facelift-recovery-time">
         <span class="th im-p3"></span>
         <span class="b">
           <span class="meta">Recovery<span class="dotmid">&middot;</span>5 min</span>
@@ -1188,7 +1324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rt">Read article &rarr;</span>
         </span>
       </a>
-      <a class="jcard reveal" href="facelift-scars.html">
+      <a class="jcard reveal" href="/facelift-scars">
         <span class="th im-p1"></span>
         <span class="b">
           <span class="meta">Recovery<span class="dotmid">&middot;</span>5 min</span>
@@ -1197,7 +1333,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="rt">Read article &rarr;</span>
         </span>
       </a>
-      <a class="jcard reveal" href="how-to-prepare-for-a-facelift.html">
+      <a class="jcard reveal" href="/how-to-prepare-for-a-facelift">
         <span class="th im-p4"></span>
         <span class="b">
           <span class="meta">Recovery<span class="dotmid">&middot;</span>5 min</span>
@@ -1209,7 +1345,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="jsplit"><h2>Safety</h2><span class="eyebrow">1 article</span></div>
       <div class="jgrid">
-      <a class="jcard reveal" href="facelift-risks-and-safety.html">
+      <a class="jcard reveal" href="/facelift-risks-and-safety">
         <span class="th im-p4"></span>
         <span class="b">
           <span class="meta">Safety<span class="dotmid">&middot;</span>6 min</span>
@@ -1221,7 +1357,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="jsplit"><h2>Cost</h2><span class="eyebrow">1 article</span></div>
       <div class="jgrid">
-      <a class="jcard reveal" href="deep-plane-facelift-cost-india.html">
+      <a class="jcard reveal" href="/deep-plane-facelift-cost-india">
         <span class="th im-p1"></span>
         <span class="b">
           <span class="meta">Cost<span class="dotmid">&middot;</span>6 min</span>
@@ -1238,9 +1374,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
     <div class="foot-cols">
       <div class="foot-brand"><div class="wm">Dr Prateek Sharma</div><p>Facelift &amp; Facial Plastic Surgeon. Two clinics in Delhi: Eveite, Laxmi Nagar and Aloysia Eveite, Safdarjung Enclave.</p></div>
-      <div><h5>The Practice</h5><ul><li><a href="about.html">The Surgeon</a></li><li><a href="the-facelift.html">The Facelift</a></li><li><a href="procedures.html">Procedures</a></li><li><a href="results.html">Results</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html">Book a consultation</a></li></ul></div>
+      <div><h5>The Practice</h5><ul><li><a href="/best-facelift-surgeon-delhi">The Surgeon</a></li><li><a href="/the-facelift">The Facelift</a></li><li><a href="/procedures">Procedures</a></li><li><a href="/results">Results</a></li><li><a href="/journal">Journal</a></li><li><a href="/contact">Book a consultation</a></li></ul></div>
       <div><h5>Connect</h5><ul><li><a href="tel:+918384005197">+91 8384 005197</a></li><li><a href="https://instagram.com/thefaceliftsurgeon">@thefaceliftsurgeon</a></li><li><a href="https://instagram.com/eveite_aesthetics">@eveite_aesthetics</a></li><li><a href="https://instagram.com/ae.stheticsurgery">@ae.stheticsurgery</a></li></ul></div>
-      <div><h5>Locations</h5><ul><li><a href="facelift-south-delhi.html">Facelift in South Delhi</a></li><li><a href="facelift-east-delhi.html">Facelift in East Delhi</a></li><li><a href="facelift-delhi-ncr.html">Delhi NCR patients</a></li></ul></div>
+      <div><h5>Locations</h5><ul><li><a href="/facelift-south-delhi">Facelift in South Delhi</a></li><li><a href="/facelift-east-delhi">Facelift in East Delhi</a></li><li><a href="/facelift-delhi-ncr">Delhi NCR patients</a></li></ul></div>
       <div><h5>Two Delhi clinics</h5><ul><li><b style="color:#c8a463">Eveite</b><br>F-6/B, Street No. 15,<br>Laxmi Nagar, New Delhi 110092</li><li style="margin-top:.7rem"><b style="color:#c8a463">Aloysia Eveite</b><br>A-1/298, Basement,<br>Safdarjung Enclave,<br>New Delhi 110029</li></ul></div>
     </div>
     <p class="disclaimer">This website is for general information and education only. It does not constitute medical advice, an offer of treatment, or any assurance of a particular result. Information is general in nature; suitability and outcomes differ for every individual and can only be determined through a personal clinical consultation.</p>
