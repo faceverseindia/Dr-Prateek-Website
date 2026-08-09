@@ -1,5 +1,5 @@
 {
-  "cleanUrls": false,
+  "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
     {
@@ -199,6 +199,161 @@
     {
       "source": "/consultation",
       "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-doctor-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-specialist-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/top-facelift-surgeon-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-surgeon-near-me",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facial-plastic-surgeon-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/best-facial-plastic-surgeon-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-surgeon-new-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/best-facelift-doctor-india",
+      "destination": "/best-facelift-surgeon-in-india.html",
+      "permanent": true
+    },
+    {
+      "source": "/top-facelift-surgeon-india",
+      "destination": "/best-facelift-surgeon-in-india.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-india",
+      "destination": "/best-facelift-surgeon-in-india.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-south-delhi",
+      "destination": "/facelift-south-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-east-delhi",
+      "destination": "/facelift-east-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-delhi-ncr",
+      "destination": "/facelift-delhi-ncr.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-gurgaon",
+      "destination": "/facelift-south-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-gurugram",
+      "destination": "/facelift-south-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-noida",
+      "destination": "/facelift-east-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-ghaziabad",
+      "destination": "/facelift-east-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-saket",
+      "destination": "/facelift-south-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-hauz-khas",
+      "destination": "/facelift-south-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-greater-kailash",
+      "destination": "/facelift-south-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-safdarjung-enclave",
+      "destination": "/facelift-south-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-laxmi-nagar",
+      "destination": "/facelift-east-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-ncr",
+      "destination": "/facelift-delhi-ncr.html",
+      "permanent": true
+    },
+    {
+      "source": "/mid-face-lift",
+      "destination": "/mid-face-lift-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/rhinoplasty-delhi-surgeon",
+      "destination": "/rhinoplasty-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/septoplasty-delhi",
+      "destination": "/rhinoplasty-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/thread-lift-delhi",
+      "destination": "/non-surgical-treatments-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/hifu-delhi",
+      "destination": "/non-surgical-treatments-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/deep-plane-facelift-india",
+      "destination": "/what-is-a-deep-plane-facelift.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-before-after",
+      "destination": "/facelift-before-and-after.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-recovery-delhi",
+      "destination": "/facelift-recovery-time.html",
       "permanent": true
     }
   ]
