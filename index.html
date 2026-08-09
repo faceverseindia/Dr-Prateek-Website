@@ -1624,12 +1624,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="sec">
       <div class="wrap">
         <div class="proc-grid">
-          <a class="proc reveal" href="/the-facelift"><span class="k">Signature</span><h3>Deep Plane Facelift</h3><p>The centre of the practice. A structural lift of the deep layer of the face for a natural, lasting result across the cheek, jaw and mid-face.</p><span class="go">Explore the facelift</span></a>
-          <a class="proc reveal" href="/neck-lift-delhi"><span class="k">Lower face &amp; neck</span><h3>Neck Lift</h3><p>Jowls, neck bands and a softened jaw angle are structural changes. A neck lift addresses them, usually alongside a facelift.</p><span class="go">Explore the neck lift</span></a>
-          <a class="proc reveal" href="/mid-face-lift-delhi"><span class="k">Mid-face</span><h3>Mid-Face Lift</h3><p>Restores height and position to the cheek and the area beneath the eyes, where facial ageing usually shows first.</p><span class="go">Explore the mid-face lift</span></a>
-          <a class="proc reveal" href="/rhinoplasty-delhi"><span class="k">Nose</span><h3>Rhinoplasty</h3><p>The one feature that has to work as well as it looks. Trained first in ENT, breathing and appearance are treated as one problem.</p><span class="go">Explore rhinoplasty</span></a>
-          <a class="proc reveal" href="/non-surgical-treatments-delhi"><span class="k">Non-surgical</span><h3>Without surgery</h3><p>Devices, lasers and injectables have a genuine place. Knowing which problem you have is what stops money going to the wrong answer.</p><span class="go">Assessed honestly</span></a>
-          <a class="proc reveal" href="/facelift-vs-thread-lift"><span class="k">Guidance</span><h3>Facelift or something lighter?</h3><p>Not everyone needs surgery. Sometimes a less involved option fits better. An honest assessment points you the right way.</p><span class="go">Facelift vs thread lift</span></a>
+          <a class="proc reveal" href="#/the-facelift"><span class="k">Signature</span><h3>Deep Plane Facelift</h3><p>The centre of the practice. A structural lift of the deep layer of the face for a natural, lasting result across the cheek, jaw and mid-face.</p><span class="go">Explore the facelift</span></a>
+          <a class="proc reveal" href="neck-lift-delhi.html"><span class="k">Lower face &amp; neck</span><h3>Neck Lift</h3><p>Jowls, neck bands and a softened jaw angle are structural changes. A neck lift addresses them, usually alongside a facelift.</p><span class="go">Explore the neck lift</span></a>
+          <a class="proc reveal" href="mid-face-lift-delhi.html"><span class="k">Mid-face</span><h3>Mid-Face Lift</h3><p>Restores height and position to the cheek and the area beneath the eyes, where facial ageing usually shows first.</p><span class="go">Explore the mid-face lift</span></a>
+          <a class="proc reveal" href="rhinoplasty-delhi.html"><span class="k">Nose</span><h3>Rhinoplasty</h3><p>The one feature that has to work as well as it looks. Trained first in ENT, breathing and appearance are treated as one problem.</p><span class="go">Explore rhinoplasty</span></a>
+          <a class="proc reveal" href="non-surgical-treatments-delhi.html"><span class="k">Non-surgical</span><h3>Without surgery</h3><p>Devices, lasers and injectables have a genuine place. Knowing which problem you have is what stops money going to the wrong answer.</p><span class="go">Assessed honestly</span></a>
+          <a class="proc reveal" href="#/facelift-vs-thread-lift"><span class="k">Guidance</span><h3>Facelift or something lighter?</h3><p>Not everyone needs surgery. Sometimes a less involved option fits better. An honest assessment points you the right way.</p><span class="go">Facelift vs thread lift</span></a>
         </div>
         <p class="medreview">Suitability for any procedure is determined only through a personal clinical consultation. Outcomes differ for every individual, and nothing here is a guarantee of a result.</p>
       </div>
@@ -4247,45 +4247,107 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         var s=document.getElementById('fsent'); if(s) s.classList.add('show');
       }
 
-      /* A real form POST into a hidden iframe. Browsers permit this
-         cross-origin, so it works where fetch is blocked by CORS,
-         including from a file:// path. */
-      function sendViaIframe(d, onDone, onFail){
-        var frameName = 'ae_sink_' + Date.now();
-        var frame = document.createElement('iframe');
-        frame.name = frameName;
-        frame.style.display = 'none';
-        document.body.appendChild(frame);
-
-        var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = SHEET_ENDPOINT;
-        form.target = frameName;
-        form.style.display = 'none';
-
-        for (var k in d){
-          if(!Object.prototype.hasOwnProperty.call(d,k)) continue;
-          var i = document.createElement('input');
-          i.type = 'hidden'; i.name = k; i.value = d[k];
-          form.appendChild(i);
-        }
-        document.body.appendChild(form);
-
+      /* Delivery, most reliable first. Each step only runs if the
+         previous one genuinely failed, and we only report success
+         when the sheet actually confirms it. */
+      function send(d, onDone, onFail){
+        var body = JSON.stringify(d);
         var settled = false;
-        function finish(ok){
-          if(settled) return; settled = true;
-          setTimeout(function(){
-            try{ document.body.removeChild(form); }catch(e){}
-            try{ document.body.removeChild(frame); }catch(e){}
-          }, 1500);
-          ok ? onDone() : onFail();
+        function ok(){ if(settled) return; settled = true; clearTimeout(guard); onDone(); }
+        function bad(){ if(settled) return; settled = true; clearTimeout(guard); onFail(); }
+
+        /* nothing has resolved in 15s: treat as a failure, not a success */
+        var guard = setTimeout(bad, 15000);
+
+        /* 1. plain fetch. text/plain avoids a CORS preflight, and Apps Script
+              answers with Access-Control-Allow-Origin, so we can READ the
+              reply and know for certain whether the row was written. */
+        if (window.fetch) {
+          fetch(SHEET_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: body,
+            redirect: 'follow'
+          })
+          .then(function(r){ return r.text(); })
+          .then(function(t){
+            var good = false;
+            try { good = JSON.parse(t).ok === true; }
+            catch(e){ good = /"ok"\s*:\s*true/.test(t); }
+            if (good) { console.log('[form] sheet confirmed'); ok(); }
+            else { console.warn('[form] sheet replied but not ok:', t); noCors(); }
+          })
+          .catch(function(e){ console.warn('[form] fetch blocked:', e); noCors(); });
+        } else {
+          viaIframe();
         }
 
-        frame.onload  = function(){ console.log('[form] submitted to sheet'); finish(true); };
-        frame.onerror = function(){ console.error('[form] iframe error'); finish(false); };
-        setTimeout(function(){ finish(true); }, 6000);   /* assume delivered */
+        /* 2. same request, opaque. Survives strict CORS, but we cannot
+              read the answer, so a resolved promise is the best we get. */
+        function noCors(){
+          if (settled) return;
+          fetch(SHEET_ENDPOINT, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: body
+          })
+          .then(function(){ console.log('[form] sent (no-cors)'); ok(); })
+          .catch(function(){ viaBeacon(); });
+        }
 
-        form.submit();
+        /* 3. sendBeacon: survives the page being closed mid-send. */
+        function viaBeacon(){
+          if (settled) return;
+          try {
+            var blob = new Blob([body], { type: 'text/plain;charset=utf-8' });
+            if (navigator.sendBeacon && navigator.sendBeacon(SHEET_ENDPOINT, blob)) {
+              console.log('[form] sent (beacon)'); return ok();
+            }
+          } catch(e){}
+          viaIframe();
+        }
+
+        /* 4. last resort: a real form POST into a hidden iframe. */
+        function viaIframe(){
+          if (settled) return;
+          var frameName = 'ae_sink_' + Date.now();
+          var frame = document.createElement('iframe');
+          frame.name = frameName;
+          frame.style.display = 'none';
+          document.body.appendChild(frame);
+
+          var form = document.createElement('form');
+          form.method = 'POST';
+          form.action = SHEET_ENDPOINT;
+          form.target = frameName;
+          form.style.display = 'none';
+          for (var k in d){
+            if(!Object.prototype.hasOwnProperty.call(d,k)) continue;
+            var inp = document.createElement('input');
+            inp.type = 'hidden'; inp.name = k; inp.value = d[k];
+            form.appendChild(inp);
+          }
+          document.body.appendChild(form);
+
+          /* Chrome fires load once for the empty iframe BEFORE the POST
+             lands. Counting it as success used to tear the iframe down
+             mid-request, which is why desktop submissions vanished. */
+          var loads = 0;
+          frame.onload = function(){
+            loads++;
+            if (loads < 2) return;          /* ignore the about:blank load */
+            console.log('[form] sent (iframe)');
+            cleanup(); ok();
+          };
+          function cleanup(){
+            setTimeout(function(){
+              try { document.body.removeChild(form); } catch(e){}
+              try { document.body.removeChild(frame); } catch(e){}
+            }, 10000);                       /* never yank it early */
+          }
+          setTimeout(function(){ cleanup(); ok(); }, 9000);
+          form.submit();
+        }
       }
 
       var waBtn = document.getElementById('sendWa');
@@ -4308,7 +4370,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         btn.textContent = 'Sending...'; btn.setAttribute('disabled','disabled');
 
-        sendViaIframe(d, done, function(){
+        send(d, done, function(){
           reset();
           fail('We could not reach the booking system. Please use the WhatsApp button, it opens with your details ready.');
           waFallback(d);
@@ -4323,7 +4385,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="foot-brand"><div class="wm">Dr Prateek Sharma</div><p>Facelift &amp; Facial Plastic Surgeon. Two clinics in Delhi: Eveite, Laxmi Nagar and Aloysia Eveite, Safdarjung Enclave.</p></div>
       <div><h5>The Practice</h5><ul><li><a href="#/about">The Surgeon</a></li><li><a href="#/the-facelift">The Facelift</a></li><li><a href="#/procedures">Procedures</a></li><li><a href="#/results">Results</a></li><li><a href="#/journal">Journal</a></li><li><a href="#/contact">Book a consultation</a></li></ul></div>
       <div><h5>Connect</h5><ul><li><a href="tel:+918384005197">+91 8384 005197</a></li><li><a href="https://instagram.com/thefaceliftsurgeon">@thefaceliftsurgeon</a></li><li><a href="https://instagram.com/eveite_aesthetics">@eveite_aesthetics</a></li><li><a href="https://instagram.com/ae.stheticsurgery">@ae.stheticsurgery</a></li></ul></div>
-      <div><h5>Locations</h5><ul><li><a href="/facelift-south-delhi">Facelift in South Delhi</a></li><li><a href="/facelift-east-delhi">Facelift in East Delhi</a></li><li><a href="/facelift-delhi-ncr">Delhi NCR patients</a></li></ul></div>
+      <div><h5>Locations</h5><ul><li><a href="facelift-south-delhi.html">Facelift in South Delhi</a></li><li><a href="facelift-east-delhi.html">Facelift in East Delhi</a></li><li><a href="facelift-delhi-ncr.html">Delhi NCR patients</a></li></ul></div>
       <div><h5>Two Delhi clinics</h5><ul><li><b style="color:#c8a463">Eveite</b><br>F-6/B, Street No. 15,<br>Laxmi Nagar, New Delhi 110092</li><li style="margin-top:.7rem"><b style="color:#c8a463">Aloysia Eveite</b><br>A-1/298, Basement,<br>Safdarjung Enclave,<br>New Delhi 110029</li></ul></div>
     </div>
     <p class="disclaimer">This website is for general information and education only. It does not constitute medical advice, an offer of treatment, or any assurance of a particular result. Information is general in nature; suitability and outcomes differ for every individual and can only be determined through a personal clinical consultation.</p>
@@ -4738,7 +4800,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* ---- per-route SEO: title, description, canonical, Open Graph ---- */
   var SEO={"about":{"t":"About Dr Prateek Sharma | Facelift Surgeon, Delhi","d":"Dr Prateek Sharma is a facelift and facial plastic surgeon in Delhi, India. His work is built on a single conviction: that the most beautiful result is…"},"the-facelift":{"t":"Deep Plane Facelift in Delhi | Dr Prateek Sharma","d":"The reason a face looks tired lives beneath the skin, in a layer called the SMAS. A deep plane facelift works there, at the source, which is why the…"},"procedures":{"t":"Facial Plastic Surgery Procedures | Delhi","d":"A deliberately narrow focus on the face, led by the deep plane facelift. Every procedure begins the same way: with a consultation that decides whether it…"},"results":{"t":"Facelift Results & Philosophy | Dr Prateek Sharma","d":"The best facelift result is the one nobody notices as surgery. Not tighter. Not different. Just you, looking like you had a very good rest. Here is how…"},"journal":{"t":"Facelift Guides & Answers | Dr Prateek Sharma","d":"Plain, unhurried answers to the questions people actually ask before a facelift. Written by Dr Prateek Sharma, a facelift and facial plastic surgeon in…"},"what-is-a-deep-plane-facelift":{"t":"What Is a Deep Plane Facelift? Explained by a Surgeon","d":"The technique behind a natural facelift result, explained simply by a facelift surgeon in Delhi."},"deep-plane-vs-smas-facelift":{"t":"Deep Plane vs SMAS Facelift: The Real Difference","d":"Two names, one deeper question. A facelift surgeon in Delhi explains what actually separates them."},"how-long-does-a-facelift-last":{"t":"How Long Does a Facelift Last? A Surgeon Answers","d":"An honest answer about time, ageing and what a facelift can and cannot pause."},"facelift-recovery-time":{"t":"Facelift Recovery Time: Week by Week Guide","d":"What the days after a facelift actually look like, without the drama."},"best-age-for-a-facelift":{"t":"What Is the Best Age for a Facelift?","d":"Why the number on your birth certificate matters far less than you think."},"facelift-vs-thread-lift":{"t":"Facelift vs Thread Lift: Which Is Right for You?","d":"One is a structural operation. One is a temporary lift. Knowing the difference saves disappointment."},"deep-plane-facelift-cost-india":{"t":"Deep Plane Facelift Cost in India (2026 Guide)","d":"What actually goes into the price, and why a single number online can mislead you."},"facelift-surgeon-in-delhi":{"t":"How to Choose a Facelift Surgeon in Delhi","d":"The questions that separate genuine facial surgery expertise from good marketing."},"facelift-surgery-in-delhi":{"t":"Facelift Surgery in Delhi: A Complete Guide","d":"Where to start, what to ask, and how to judge a clinic, if you are considering a facelift in Delhi."},"best-facelift-surgeon-in-india":{"t":"How to Find the Best Facelift Surgeon in India","d":"Nobody can crown themselves the best. Here is how to judge for yourself, properly."},"types-of-facelift":{"t":"Types of Facelift, Explained by a Surgeon","d":"Deep plane, SMAS, mini, mid-face, neck. What each name actually means, without the jargon."},"mini-facelift-vs-full-facelift":{"t":"Mini Facelift vs Full Facelift: How to Choose","d":"Less recovery sounds appealing. Here is what you trade for it."},"facelift-scars":{"t":"Facelift Scars: Where They Go and How They Fade","d":"The honest answer about incisions, placement, and what they look like a year later."},"facelift-risks-and-safety":{"t":"Is a Facelift Safe? Risks Explained Honestly","d":"Every operation carries risk. Understanding it properly is how you make a real decision."},"neck-lift-and-jawline":{"t":"Neck Lift and Jawline Surgery, Explained","d":"Why the neck often gives away age before the face does, and what can be done about it."},"facelift-for-men":{"t":"Facelift for Men: What Is Different","d":"Beard, blood supply and a different definition of success. Male facelifts are their own operation."},"non-surgical-facelift-options":{"t":"Non-Surgical Facelift Options: What Actually Works","d":"Threads, HIFU, lasers and fillers. What each genuinely does, and where the marketing overreaches."},"how-to-prepare-for-a-facelift":{"t":"How to Prepare for a Facelift: A Checklist","d":"The weeks before surgery affect your result more than most people realise."},"facelift-before-and-after":{"t":"Facelift Before and After: What Actually Changes","d":"How to read result photographs properly, and what a good outcome really looks like."},"contact":{"t":"Book a Facelift Consultation in Delhi","d":"The most useful answers about your face are personal ones. A consultation with Dr Prateek Sharma is an honest, unhurried assessment, with no pressure to…"},"":{"t":"Facelift Surgeon in Delhi | Dr Prateek Sharma","d":"Dr Prateek Sharma is a facelift and facial plastic surgeon in Delhi specialising in the deep plane facelift. Two clinics: Laxmi Nagar and Safdarjung Enclave."}};
   var SITE='https://drprateeksharma.com';
-  function seoUrl(r){return r?SITE+'/'+r:SITE+'/';}
+  function seoUrl(r){return r?SITE+'/'+r+'.html':SITE+'/';}
   function setMeta(sel,attr,val){
     var el=document.head.querySelector(sel);
     if(!el){
