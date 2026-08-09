@@ -140,6 +140,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
   nav a{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);transition:color .25s;position:relative}
   nav a::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:var(--green);transition:width .3s}
   nav a:hover{color:var(--green)}nav a:hover::after{width:100%}
+  .nav-head,.nav-foot,.nav-hint,.scrim{display:none}
   .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--green);color:var(--bg)!important;border:1px solid var(--green);border-radius:100px;padding:.66rem 1.25rem;font-size:.64rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;transition:all .3s;cursor:pointer;min-height:42px}
   .btn:hover{background:var(--green-d);transform:translateY(-2px)}
   .btn.ghost{background:transparent;color:var(--ink)!important;border-color:var(--line)}
@@ -159,7 +160,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
     .nav-book{justify-self:end}
 
     /* ---- drawer ---- */
-    .scrim{position:fixed;inset:0;z-index:98;background:rgba(16,15,12,.5);opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+    .scrim{display:block;position:fixed;inset:0;z-index:98;background:rgba(16,15,12,.5);opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
     .scrim.show{opacity:1;visibility:visible}
 
     nav#nav{
@@ -211,11 +212,11 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
     nav#nav a[aria-current="page"]::before{transform:scaleY(1);background:var(--bronze)}
     nav#nav a[aria-current="page"]::after{display:none}
 
-    .nav-foot{margin-top:auto;padding:1.6rem 1.5rem 0;border-top:1px solid var(--line-soft)}
+    .nav-foot{display:block;margin-top:auto;padding:1.6rem 1.5rem 0;border-top:1px solid var(--line-soft)}
     .nav-foot .nf-k{display:block;font-size:.52rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-d);margin-bottom:.6rem}
     .nav-foot a.nf-tel{display:inline-block;font-family:var(--serif);font-size:1.05rem;color:var(--green);padding:0;min-height:0;opacity:1;transform:none;background:none}
     .nav-foot a.nf-tel::before{display:none}
-    .nav-hint{padding:1rem 1.5rem 0;font-size:.54rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-d)}
+    .nav-hint{display:block;padding:1rem 1.5rem 0;font-size:.54rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-d)}
   }
   @media(max-width:940px) and (prefers-reduced-motion:reduce){
     nav#nav,nav#nav a,.scrim{transition-duration:.01s!important}
@@ -661,6 +662,165 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
 
   .btn-wa{color:var(--green)!important;font-weight:700}
   .btn-wa:hover{background:var(--green)!important;color:#efe9df!important;border-color:var(--green)!important}
+
+  /* ============================================================
+     MOBILE OPTIMISATION — tighter rhythm, grids, fewer scrolls
+     ============================================================ */
+  @media(max-width:760px){
+
+    /* --- global guards --- */
+    html,body{overflow-x:hidden}
+    img,svg,video{max-width:100%}
+    p,li{overflow-wrap:break-word}
+
+    /* --- vertical rhythm: compress the page --- */
+    .sec{padding:3.1rem var(--pad)}
+    .sec-title{margin-bottom:.8rem}
+    .sec-intro{margin-bottom:1.7rem;font-size:.95rem;line-height:1.65}
+    .sec-eyebrow{margin-bottom:.8rem}
+    .collage-sec{padding:2rem var(--pad)}
+    .collage-cap{margin-top:1rem;font-size:1.12rem}
+    .logobar{padding:1rem var(--pad)}
+
+    /* --- hero: shorter, faster to the point --- */
+    .hero{padding:6.4rem var(--pad) 2.6rem;gap:1.7rem}
+    .hero-art{aspect-ratio:1/1;max-height:44svh}
+    .hero .eq{margin-top:.7rem}
+    .hero .role{margin-top:1rem;font-size:.66rem}
+    .hero .cta-wrap{margin-top:1.5rem}
+    .hero-words{opacity:.4}
+    .hero .scrollcue{display:none}
+
+    /* --- authority: the ventures + clinics become a grid --- */
+    .authority{padding:3.2rem var(--pad)}
+    .auth-h{margin-bottom:1.8rem}
+    .auth-rule{margin-top:2.5rem;margin-bottom:1.1rem}
+    .auth-lede{margin-bottom:1.5rem;font-size:1rem;line-height:1.45}
+    .auth-close{margin-top:1.9rem}
+    .auth-row{padding:.85rem 0}
+
+    .found{grid-template-columns:1fr 1fr;gap:1px}
+    .fx{padding:1.05rem .95rem}
+    .fx h3{font-size:1.12rem;margin:.35rem 0 .3rem;line-height:1.1}
+    .fx-t{font-size:.78rem;line-height:1.3;margin-bottom:.55rem}
+    .fx p{display:none}
+    .fx-go{margin-top:.2rem;font-size:.5rem;letter-spacing:.14em;word-break:break-all}
+    /* odd card out spans the full width instead of sitting alone */
+    .found > .fx:last-child:nth-child(odd){grid-column:1/-1}
+    /* clinics keep their address — that one matters */
+    .found.clinics .fx p{display:block;font-size:.76rem;line-height:1.5;margin-top:.35rem}
+
+    /* --- about page: same treatment for .ventures --- */
+    .ventures,.ventures.clinic-2{grid-template-columns:1fr 1fr;gap:.7rem}
+    .venture{padding:1.05rem .95rem;border-radius:11px}
+    .venture h3{font-size:1.12rem;margin:.35rem 0 .3rem}
+    .venture .v-t{font-size:.78rem;line-height:1.3;margin-bottom:.55rem}
+    .venture p{display:none}
+    .v-go{margin-top:.2rem;font-size:.5rem;letter-spacing:.14em;word-break:break-all}
+    .ventures > .venture:last-child:nth-child(odd){grid-column:1/-1}
+    .ventures.clinic-2 .venture p{display:block;font-size:.76rem;line-height:1.5;margin-top:.35rem}
+
+    /* --- anatomy scroll: same story, half the scrolling --- */
+    .anat{height:300vh}
+    .anat-sticky{height:100svh;gap:1.3rem}
+
+    /* --- image band: was eating most of a screen --- */
+    .imgband{height:min(58vh,420px)}
+    .imgband .cap{padding:1.6rem var(--pad)}
+    .imgband .cap h2{font-size:1.65rem}
+    .imgband .cap p{font-size:.88rem;margin-top:.6rem}
+
+    /* --- quiz + closing CTA --- */
+    .quiz{padding:2.9rem var(--pad)}
+    .quiz .meta{margin-bottom:1.2rem}
+    .quiz .card{min-height:150px}
+    .quiz .q{margin-bottom:1.1rem}
+    .quiz .opts{gap:.55rem}
+    .quiz .opts button{padding:.7rem 1.15rem;font-size:.78rem;min-height:44px}
+    .quiz .bar{margin-top:1.6rem}
+    .cta{padding:3.6rem var(--pad)}
+    .cta p{margin:1.1rem auto 1.7rem;font-size:.95rem}
+    .cta .quick{margin-top:1.4rem;gap:.5rem 1.2rem;font-size:.78rem}
+
+    /* --- lists: bigger tap targets, no cramped rows --- */
+    .journey .head{margin-bottom:1.9rem}
+    .cases .head{margin-bottom:1rem}
+    .faq .head{margin-bottom:1.5rem}
+    .faq details{padding:1rem 0}
+    .faq summary{min-height:48px;align-items:center}
+    .faq details p{margin-top:.7rem;font-size:.92rem;line-height:1.7}
+    .proclist li{padding:.95rem 0;min-height:48px;align-items:center}
+    .jlist li a{padding:.95rem 0}
+    .cred{padding:.95rem 0;gap:.25rem;flex-direction:column;align-items:flex-start}
+    .cred .yr{width:auto}
+    .case{padding:1.9rem 0}
+    .btn{min-height:46px}
+
+    /* --- footer --- */
+    .foot-cols{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem;margin-bottom:2rem}
+    .foot-cols > *:first-child{grid-column:1/-1}
+  }
+
+  /* very small phones */
+  @media(max-width:400px){
+    .fx h3,.venture h3{font-size:1.02rem}
+    .fx-t,.venture .v-t{font-size:.73rem}
+    .fx-go,.v-go{font-size:.46rem}
+    .hero-art{max-height:38svh}
+  }
+
+  /* ---- mobile: inner pages (about / results / journal / contact / articles) ---- */
+  @media(max-width:760px){
+    .spa-sub .sec{padding:2.6rem 0}
+    .spa-sub .sec-title{margin-bottom:.8rem}
+    .spa-sub .sec-intro{margin-bottom:1.7rem;font-size:.95rem;line-height:1.65}
+    .spa-sub .phero{padding:calc(3.4rem + 62px) var(--pad) 1.9rem}
+    .spa-sub .phero .dek{margin-top:1rem;font-size:.97rem;line-height:1.65}
+    .spa-sub .jhero{padding:calc(3.4rem + 62px) var(--pad) 1.7rem}
+    .spa-sub .jhero .dek{margin-top:1rem;font-size:.97rem}
+    .spa-sub .doc{padding:calc(2.6rem + 62px) var(--pad) 0}
+    .spa-sub .crumbs{margin-bottom:1.4rem}
+    .spa-sub .art-h1{margin-bottom:.9rem}
+    .spa-sub .art-dek{margin-bottom:1.2rem}
+    .spa-sub .art-meta{padding:.8rem 0;margin-bottom:1.6rem;gap:.5rem}
+    .spa-sub .prose{font-size:1.01rem;line-height:1.72}
+    .spa-sub .prose p{margin-bottom:1.1rem}
+    .spa-sub .prose h2{margin:1.9rem 0 .8rem}
+    .spa-sub .prose h3{margin:1.4rem 0 .6rem}
+    .spa-sub .takeaways{padding:1.15rem 1.2rem;margin-bottom:1.8rem}
+    .spa-sub .pull{margin:1.5rem 0;padding-left:1.1rem}
+    .spa-sub .art-faq{margin-top:2.1rem}
+    .spa-sub .art-faq summary{padding:1rem 0;min-height:48px}
+    .spa-sub .art-cta{margin-top:1.9rem}
+    .spa-sub .authorbox{flex-direction:column;gap:.9rem;padding:1.3rem;margin-top:2.1rem}
+    .spa-sub .related{padding:2.4rem var(--pad);margin-top:2.4rem}
+    .spa-sub .ctaband{padding:2.9rem var(--pad);margin-top:2.4rem}
+    .spa-sub .ctaband p{margin-bottom:1.4rem;font-size:.95rem}
+    .spa-sub .cred{padding:.95rem 0;gap:.25rem;flex-direction:column;align-items:flex-start}
+    .spa-sub .cred .yr{width:auto}
+    .spa-sub .step{padding:1rem 0;gap:.9rem}
+    .spa-sub .proc{padding:1.3rem 1.15rem}
+    .spa-sub .proc p{margin-bottom:.9rem;font-size:.9rem}
+    .spa-sub .feat{margin-bottom:1.8rem}
+    .spa-sub .feat .fb{padding:1.3rem 1.15rem}
+    .spa-sub .feat p{margin-bottom:1rem;font-size:.9rem}
+    .spa-sub .jcard .b{padding:1.15rem}
+    .spa-sub .jsplit{margin:2.2rem 0 1.2rem}
+    .spa-sub .frow{margin-bottom:2rem}
+    .spa-sub .cblock{padding:.95rem 0}
+    .spa-sub .cform{padding:1.3rem 1.15rem}
+    .spa-sub .field{margin-bottom:.85rem}
+    .spa-sub .field input,.spa-sub .field select,.spa-sub .field textarea{font-size:16px;padding:.8rem .9rem}
+    .spa-sub .btn,.spa-sub .cbtns .btn{min-height:46px}
+    .spa-sub .foot-cols{grid-template-columns:1fr 1fr;gap:1.6rem 1.2rem;margin-bottom:2rem}
+    .spa-sub .foot-brand{grid-column:1/-1}
+    .spa-sub .medreview{margin-top:1.7rem}
+  }
+
+  /* iOS: never zoom on focus */
+  @media(max-width:760px){
+    input,select,textarea{font-size:16px}
+  }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "AboutPage", "name": "The Surgeon", "url": "https://drprateeksharma.com/about.html", "mainEntity": {"@id": "https://drprateeksharma.com/#physician"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MedicalProcedure", "name": "Deep Plane Facelift", "procedureType": "https://schema.org/SurgicalProcedure", "howPerformed": "The deep plane facelift releases the ligaments anchoring the SMAS layer and repositions the deep structural layer of the face, redraping the skin without tension for a natural result.", "bodyLocation": "Face", "performer": {"@id": "https://drprateeksharma.com/#physician"}, "url": "https://drprateeksharma.com/the-facelift.html"}</script>
@@ -4015,7 +4175,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   scrim.className='scrim';
   scrim.setAttribute('aria-hidden','true');
   document.body.appendChild(scrim);
-  document.body.appendChild(nav);
+
+  /* Portal only while mobile; put it back in the header on desktop so the
+     inline links render in the bar as before. */
+  const navHome=nav.parentNode, navAnchor=nav.nextElementSibling;
+  const MOBILE=940;
+  function placeNav(){
+    if(innerWidth<=MOBILE){
+      if(nav.parentNode!==document.body)document.body.appendChild(nav);
+    }else if(nav.parentNode!==navHome){
+      navHome.insertBefore(nav,navAnchor);
+    }
+  }
+  placeNav();
+  addEventListener('resize',placeNav);
 
   let scrollY=0;
   function setMenu(o){
