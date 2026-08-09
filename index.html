@@ -3,13 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Facelift Surgeon in Delhi | Dr Prateek Sharma — Deep Plane Facelift</title>
-<meta name="description" content="Considering a facelift in Delhi? Dr Prateek Sharma is a facelift and facial plastic surgeon, MBBS from MAMC New Delhi, MS in ENT from AIIMS New Delhi, and a Commonwealth Fellow (UK), specialising in the deep plane facelift. Understand the procedure, the questions people ask, and whether it is right for you.">
+<!-- ============ VERIFICATION: replace the content values, then delete this comment ============ -->
+<meta name="google-site-verification" content="REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_CODE">
+<meta name="msvalidate.01" content="REPLACE_WITH_BING_WEBMASTER_CODE">
+<!-- ============ Google Tag Manager: replace GTM-XXXXXXX with your container ID ============ -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})
+(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+
+<!-- ============ Google Analytics 4: replace G-XXXXXXXXXX with your measurement ID ============ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+
+<!-- ============ Microsoft Clarity: replace CLARITY_ID with your project ID ============ -->
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","CLARITY_ID");</script>
+<title>Facelift Surgeon in Delhi | Dr Prateek Sharma</title>
+<meta name="description" content="Dr Prateek Sharma is a facelift and facial plastic surgeon in Delhi specialising in the deep plane facelift. Two clinics: Laxmi Nagar and Safdarjung Enclave.">
 <meta name="keywords" content="facelift, facelift surgeon, facelift surgeon delhi, facelift doctor, facelift in delhi, best facelift in delhi, deep plane facelift, deep plane facelift delhi, most advanced facelift, facial plastic surgeon delhi, Dr Prateek Sharma">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="author" content="Dr Prateek Sharma">
 <link rel="canonical" href="https://drprateeksharma.com/">
-<meta property="og:title" content="Facelift Surgeon in Delhi | Dr Prateek Sharma — Deep Plane Facelift">
+<meta property="og:title" content="Facelift Surgeon in Delhi | Dr Prateek Sharma">
 <meta property="og:description" content="A facelift and facial plastic surgeon in Delhi specialising in the deep plane facelift. Understand the procedure and whether it is right for you.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://drprateeksharma.com/">
@@ -139,9 +157,69 @@
     .menu-toggle{display:inline-flex;justify-self:start}
     .brand{margin-right:0;justify-self:center}
     .nav-book{justify-self:end}
-    nav{position:fixed;inset:0;z-index:99;background:rgba(244,239,230,.98);backdrop-filter:blur(10px);flex-direction:column;justify-content:center;gap:1.7rem;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .5s ease,transform .5s ease,visibility .5s}
-    nav.open{opacity:1;visibility:visible;transform:none}
-    nav a{font-size:1.05rem;letter-spacing:.14em}
+
+    /* ---- drawer ---- */
+    .scrim{position:fixed;inset:0;z-index:98;background:rgba(16,15,12,.5);opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+    .scrim.show{opacity:1;visibility:visible}
+
+    nav#nav{
+      position:fixed;top:0;bottom:0;left:0;z-index:99;
+      width:min(84vw,360px);
+      display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+      gap:0;
+      background:#f7f3ec;
+      border-right:1px solid var(--line);
+      box-shadow:22px 0 60px -30px rgba(35,33,28,.55);
+      padding:calc(1.5rem + env(safe-area-inset-top)) 0 calc(1.5rem + env(safe-area-inset-bottom));
+      overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+      transform:translateX(-101%);
+      transition:transform .46s cubic-bezier(.4,0,.2,1);
+      visibility:hidden;opacity:1;
+    }
+    nav#nav.open{transform:none;visibility:visible}
+    nav#nav.dragging{transition:none}
+
+    .nav-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.2rem 1.5rem 1.4rem;border-bottom:1px solid var(--line-soft);margin-bottom:.6rem}
+    .nav-head .nh-k{font-size:.52rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-d)}
+    .nav-close{background:none;border:1px solid var(--line);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:1rem;line-height:1;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+    .nav-close:hover,.nav-close:active{background:var(--green);color:#f4efe6;border-color:var(--green)}
+
+    nav#nav a{
+      display:flex;align-items:center;gap:.9rem;
+      font-family:var(--serif);font-size:1.28rem;font-weight:300;
+      letter-spacing:0;text-transform:none;
+      color:var(--ink);
+      padding:.86rem 1.5rem;
+      min-height:52px;
+      position:relative;
+      opacity:0;transform:translateX(-14px);
+      transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1),background .25s,color .25s;
+    }
+    nav#nav.open a{opacity:1;transform:none}
+    nav#nav.open a:nth-child(1){transition-delay:.10s}
+    nav#nav.open a:nth-child(2){transition-delay:.15s}
+    nav#nav.open a:nth-child(3){transition-delay:.20s}
+    nav#nav.open a:nth-child(4){transition-delay:.25s}
+    nav#nav.open a:nth-child(5){transition-delay:.30s}
+    nav#nav.open a:nth-child(6){transition-delay:.35s}
+    nav#nav.open a:nth-child(7){transition-delay:.40s}
+
+    nav#nav a::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;background:var(--green);transform:scaleY(0);transform-origin:50% 50%;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+    nav#nav a:hover,nav#nav a:active,nav#nav a.on{background:rgba(63,90,77,.09);color:var(--green)}
+    nav#nav a:hover::before,nav#nav a:active::before,nav#nav a.on::before{transform:scaleY(1)}
+    nav#nav a[aria-current="page"]{color:var(--green);font-style:italic}
+    nav#nav a[aria-current="page"]::before{transform:scaleY(1);background:var(--bronze)}
+    nav#nav a[aria-current="page"]::after{display:none}
+
+    .nav-foot{margin-top:auto;padding:1.6rem 1.5rem 0;border-top:1px solid var(--line-soft)}
+    .nav-foot .nf-k{display:block;font-size:.52rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-d);margin-bottom:.6rem}
+    .nav-foot a.nf-tel{display:inline-block;font-family:var(--serif);font-size:1.05rem;color:var(--green);padding:0;min-height:0;opacity:1;transform:none;background:none}
+    .nav-foot a.nf-tel::before{display:none}
+    .nav-hint{padding:1rem 1.5rem 0;font-size:.54rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-d)}
+  }
+  @media(max-width:940px) and (prefers-reduced-motion:reduce){
+    nav#nav,nav#nav a,.scrim{transition-duration:.01s!important}
+    nav#nav a{opacity:1;transform:none}
   }
   @media(max-width:600px){.brand .wm small{display:none}.menu-toggle .mt-tx{display:none}.nav-book{padding:.6rem 1rem;font-size:.56rem}}
   @media(max-width:390px){.brand .wm{display:none}}
@@ -611,6 +689,9 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ContactPage", "name": "Book a consultation", "url": "https://drprateeksharma.com/contact.html", "mainEntity": {"@id": "https://drprateeksharma.com/#physician"}}</script>
 </head>
 <body class="lock">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
 <script>window.__route=(location.hash.indexOf("#/")===0?location.hash.slice(2):"");window.__notHome=!!window.__route;</script>
 
   <div class="grain" aria-hidden="true"></div>
@@ -654,12 +735,15 @@
         <span class="wm">Dr Prateek Sharma<small>The Facelift Surgeon · New Delhi</small></span>
       </a>
       <nav id="nav">
+        <div class="nav-head"><span class="nh-k">Menu</span><button class="nav-close" id="navClose" aria-label="Close menu">&#10005;</button></div>
         <a href="#/about">The Surgeon</a>
         <a href="#/the-facelift">The Facelift</a>
         <a href="#/procedures">Procedures</a>
         <a href="#/results">Results</a>
         <a href="#/journal">Journal</a>
         <a href="#/contact">Contact</a>
+              <div class="nav-foot"><span class="nf-k">Speak to the clinic</span><a class="nf-tel" href="tel:+918384005197">+91 8384 005197</a></div>
+        <p class="nav-hint">Swipe left to close</p>
       </nav>
       <a href="#/contact" class="btn nav-book">Book a consultation</a>
     </div>
@@ -1176,10 +1260,12 @@
     <section class="sec">
       <div class="wrap">
         <div class="proc-grid">
-          <a class="proc reveal" href="#/the-facelift"><span class="k">Signature</span><h3>Deep Plane Facelift</h3><p>The centre of the practice. A structural lift of the deep layer of the face for a natural, lasting result across the cheek, jaw and mid-face.</p><span class="go">Explore the facelift</span></a>
-          <a class="proc reveal" href="#/contact"><span class="k">Lower face &amp; neck</span><h3>Neck Lift</h3><p>Addresses the neckline and jaw definition, often considered alongside a facelift for a balanced, refreshed lower face.</p><span class="go">Discuss at consultation</span></a>
-          <a class="proc reveal" href="#/contact"><span class="k">Mid-face</span><h3>Mid-Face Lift</h3><p>Restores volume and lift to the cheek and the area beneath the eyes, where early facial ageing often begins.</p><span class="go">Discuss at consultation</span></a>
-          <a class="proc reveal" href="#/facelift-vs-thread-lift"><span class="k">Guidance</span><h3>Facelift or something lighter?</h3><p>Not everyone needs surgery. Sometimes a less involved option fits better. An honest assessment points you the right way.</p><span class="go">Facelift vs thread lift</span></a>
+          <a class="proc reveal" href="the-facelift.html"><span class="k">Signature</span><h3>Deep Plane Facelift</h3><p>The centre of the practice. A structural lift of the deep layer of the face for a natural, lasting result across the cheek, jaw and mid-face.</p><span class="go">Explore the facelift</span></a>
+          <a class="proc reveal" href="neck-lift-delhi.html"><span class="k">Lower face &amp; neck</span><h3>Neck Lift</h3><p>Jowls, neck bands and a softened jaw angle are structural changes. A neck lift addresses them, usually alongside a facelift.</p><span class="go">Explore the neck lift</span></a>
+          <a class="proc reveal" href="mid-face-lift-delhi.html"><span class="k">Mid-face</span><h3>Mid-Face Lift</h3><p>Restores height and position to the cheek and the area beneath the eyes, where facial ageing usually shows first.</p><span class="go">Explore the mid-face lift</span></a>
+          <a class="proc reveal" href="rhinoplasty-delhi.html"><span class="k">Nose</span><h3>Rhinoplasty</h3><p>The one feature that has to work as well as it looks. Trained first in ENT, breathing and appearance are treated as one problem.</p><span class="go">Explore rhinoplasty</span></a>
+          <a class="proc reveal" href="non-surgical-treatments-delhi.html"><span class="k">Non-surgical</span><h3>Without surgery</h3><p>Devices, lasers and injectables have a genuine place. Knowing which problem you have is what stops money going to the wrong answer.</p><span class="go">Assessed honestly</span></a>
+          <a class="proc reveal" href="facelift-vs-thread-lift.html"><span class="k">Guidance</span><h3>Facelift or something lighter?</h3><p>Not everyone needs surgery. Sometimes a less involved option fits better. An honest assessment points you the right way.</p><span class="go">Facelift vs thread lift</span></a>
         </div>
         <p class="medreview">Suitability for any procedure is determined only through a personal clinical consultation. Outcomes differ for every individual, and nothing here is a guarantee of a result.</p>
       </div>
@@ -3873,6 +3959,7 @@
       <div class="foot-brand"><div class="wm">Dr Prateek Sharma</div><p>Facelift &amp; Facial Plastic Surgeon. Two clinics in Delhi: Eveite, Laxmi Nagar and Aloysia Eveite, Safdarjung Enclave.</p></div>
       <div><h5>The Practice</h5><ul><li><a href="#/about">The Surgeon</a></li><li><a href="#/the-facelift">The Facelift</a></li><li><a href="#/procedures">Procedures</a></li><li><a href="#/results">Results</a></li><li><a href="#/journal">Journal</a></li><li><a href="#/contact">Book a consultation</a></li></ul></div>
       <div><h5>Connect</h5><ul><li><a href="tel:+918384005197">+91 8384 005197</a></li><li><a href="https://instagram.com/thefaceliftsurgeon">@thefaceliftsurgeon</a></li><li><a href="https://instagram.com/eveite_aesthetics">@eveite_aesthetics</a></li><li><a href="https://instagram.com/ae.stheticsurgery">@ae.stheticsurgery</a></li></ul></div>
+      <div><h5>Locations</h5><ul><li><a href="facelift-south-delhi.html">Facelift in South Delhi</a></li><li><a href="facelift-east-delhi.html">Facelift in East Delhi</a></li><li><a href="facelift-delhi-ncr.html">Delhi NCR patients</a></li></ul></div>
       <div><h5>Two Delhi clinics</h5><ul><li><b style="color:#c8a463">Eveite</b><br>F-6/B, Street No. 15,<br>Laxmi Nagar, New Delhi 110092</li><li style="margin-top:.7rem"><b style="color:#c8a463">Aloysia Eveite</b><br>A-1/298, Basement,<br>Safdarjung Enclave,<br>New Delhi 110029</li></ul></div>
     </div>
     <p class="disclaimer">This website is for general information and education only. It does not constitute medical advice, an offer of treatment, or any assurance of a particular result. Information is general in nature; suitability and outcomes differ for every individual and can only be determined through a personal clinical consultation.</p>
@@ -3917,14 +4004,90 @@
     document.querySelectorAll('a,button,.compare,.ba-slider,.opts button').forEach(el=>{el.addEventListener('mouseenter',()=>c.classList.add('big'));el.addEventListener('mouseleave',()=>c.classList.remove('big'));});
   })();
 
-  /* ---- nav / menu ---- */
+  /* ---- nav / menu (drawer) ---- */
   const hdr=document.getElementById('hdr');
   const nav=document.getElementById('nav'),mb=document.getElementById('menuBtn'),mbt=mb.querySelector('.mt-tx');
-  function setMenu(o){nav.classList.toggle('open',o);mb.classList.toggle('on',o);mb.setAttribute('aria-expanded',o);if(mbt)mbt.textContent=o?'Close':'Menu';document.body.style.overflow=o?'hidden':'';}
-  mb.addEventListener('click',()=>setMenu(!nav.classList.contains('open')));
+
+  /* The header uses backdrop-filter, which makes it a containing block for
+     position:fixed children. Moving the drawer to <body> lets it cover the
+     whole viewport instead of being trapped inside the header bar. */
+  const scrim=document.createElement('div');
+  scrim.className='scrim';
+  scrim.setAttribute('aria-hidden','true');
+  document.body.appendChild(scrim);
+  document.body.appendChild(nav);
+
+  let scrollY=0;
+  function setMenu(o){
+    if(o){
+      scrollY=window.scrollY;
+      document.body.style.position='fixed';
+      document.body.style.top=(-scrollY)+'px';
+      document.body.style.width='100%';
+    }else{
+      document.body.style.position='';
+      document.body.style.top='';
+      document.body.style.width='';
+      window.scrollTo(0,scrollY);
+    }
+    nav.classList.toggle('open',o);
+    scrim.classList.toggle('show',o);
+    mb.classList.toggle('on',o);
+    mb.setAttribute('aria-expanded',o);
+    if(mbt)mbt.textContent=o?'Close':'Menu';
+    if(o){const f=nav.querySelector('a');if(f)setTimeout(()=>f.focus({preventScroll:true}),420);}
+    else mb.focus({preventScroll:true});
+  }
+  const isOpen=()=>nav.classList.contains('open');
+
+  mb.addEventListener('click',()=>setMenu(!isOpen()));
+  scrim.addEventListener('click',()=>setMenu(false));
+  const nc=document.getElementById('navClose');
+  if(nc)nc.addEventListener('click',()=>setMenu(false));
   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
-  addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open'))setMenu(false);});
-  addEventListener('resize',()=>{if(innerWidth>940&&nav.classList.contains('open'))setMenu(false);});
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen())setMenu(false);});
+  addEventListener('resize',()=>{if(innerWidth>940&&isOpen())setMenu(false);});
+
+  /* swipe left on the drawer, or right-to-left on the scrim, closes it */
+  (function(){
+    let x0=null,y0=null,locked=false,w=0,drag=false;
+    function begin(e){
+      if(!isOpen())return;
+      const t=e.touches[0];
+      x0=t.clientX;y0=t.clientY;locked=false;drag=true;
+      w=nav.getBoundingClientRect().width||1;
+    }
+    function move(e){
+      if(!drag||x0===null)return;
+      const t=e.touches[0],dx=t.clientX-x0,dy=t.clientY-y0;
+      if(!locked){
+        if(Math.abs(dx)<8&&Math.abs(dy)<8)return;
+        if(Math.abs(dy)>Math.abs(dx)){drag=false;return;}   /* let it scroll */
+        locked=true;nav.classList.add('dragging');
+      }
+      if(e.cancelable)e.preventDefault();
+      const shift=Math.min(0,dx);                            /* left only */
+      nav.style.transform='translateX('+shift+'px)';
+      scrim.style.opacity=String(Math.max(0,1+shift/w));
+    }
+    function end(e){
+      if(!drag){x0=null;return;}
+      const t=(e.changedTouches&&e.changedTouches[0])||{clientX:x0};
+      const dx=t.clientX-x0;
+      drag=false;x0=null;
+      nav.classList.remove('dragging');
+      nav.style.transform='';
+      scrim.style.opacity='';
+      if(dx < -Math.min(70,w*0.25)) setMenu(false);
+    }
+    nav.addEventListener('touchstart',begin,{passive:true});
+    nav.addEventListener('touchmove',move,{passive:false});
+    nav.addEventListener('touchend',end);
+    nav.addEventListener('touchcancel',end);
+    scrim.addEventListener('touchstart',begin,{passive:true});
+    scrim.addEventListener('touchmove',move,{passive:false});
+    scrim.addEventListener('touchend',end);
+  })();
 
   /* ---- reveals ---- */
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
