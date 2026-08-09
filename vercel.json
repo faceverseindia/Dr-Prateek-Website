@@ -90,6 +90,116 @@
       "source": "/blog/",
       "destination": "/journal.html",
       "permanent": true
+    },
+    {
+      "source": "/facelift-surgeon-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-surgeon-in-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/best-facelift-surgeon-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/bestfacelift-surgeon-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/best-facelift-surgeon-in-delhi",
+      "destination": "/facelift-surgeon-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-delhi",
+      "destination": "/facelift-surgery-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-surgery-delhi",
+      "destination": "/facelift-surgery-in-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/best-facelift-surgeon",
+      "destination": "/best-facelift-surgeon-in-india.html",
+      "permanent": true
+    },
+    {
+      "source": "/best-facelift-surgeon-India",
+      "destination": "/best-facelift-surgeon-in-india.html",
+      "permanent": true
+    },
+    {
+      "source": "/best-facelift-surgeon-india",
+      "destination": "/best-facelift-surgeon-in-india.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-surgeon-india",
+      "destination": "/best-facelift-surgeon-in-india.html",
+      "permanent": true
+    },
+    {
+      "source": "/deep-plane-facelift",
+      "destination": "/what-is-a-deep-plane-facelift.html",
+      "permanent": true
+    },
+    {
+      "source": "/deep-plane-facelift-delhi",
+      "destination": "/what-is-a-deep-plane-facelift.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-cost",
+      "destination": "/deep-plane-facelift-cost-india.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-cost-india",
+      "destination": "/deep-plane-facelift-cost-india.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-cost-delhi",
+      "destination": "/deep-plane-facelift-cost-india.html",
+      "permanent": true
+    },
+    {
+      "source": "/neck-lift-delhi-surgery",
+      "destination": "/neck-lift-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/nose-job-delhi",
+      "destination": "/rhinoplasty-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/rhinoplasty-surgeon-delhi",
+      "destination": "/rhinoplasty-delhi.html",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-recovery",
+      "destination": "/facelift-recovery-time.html",
+      "permanent": true
+    },
+    {
+      "source": "/book",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/consultation",
+      "destination": "/contact.html",
+      "permanent": true
     }
   ]
 }
