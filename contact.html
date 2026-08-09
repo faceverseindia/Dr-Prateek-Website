@@ -1007,7 +1007,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <nav id="nav">
         <div class="nav-head"><span class="nh-k">Menu</span><button class="nav-close" id="navClose" aria-label="Close menu">&#10005;</button></div>
         <a href="index.html">Home</a>
-        <a href="about.html">The Surgeon</a>
+        <a href="best-facelift-surgeon-delhi.html">The Surgeon</a>
         <a href="the-facelift.html">The Facelift</a>
         <a href="procedures.html">Procedures</a>
         <a href="results.html">Results</a>
@@ -1133,14 +1133,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       /* Delivery, most reliable first. Each step only runs if the
          previous one genuinely failed, and we only report success
          when the sheet actually confirms it. */
+      var DEBUG = /[?&]formdebug=1/.test(location.search);
+      function LOG(m){ if(DEBUG) console.log('[form] '+m); else console.log('[form] '+m); }
+
       function send(d, onDone, onFail){
         var body = JSON.stringify(d);
         var settled = false;
-        function ok(){ if(settled) return; settled = true; clearTimeout(guard); onDone(); }
-        function bad(){ if(settled) return; settled = true; clearTimeout(guard); onFail(); }
+        function ok(how){ if(settled) return; settled = true; clearTimeout(guard); LOG('delivered via '+how); onDone(how); }
+        function bad(why){ if(settled) return; settled = true; clearTimeout(guard); LOG('FAILED: '+(why||'timeout')); onFail(); }
 
         /* nothing has resolved in 15s: treat as a failure, not a success */
-        var guard = setTimeout(bad, 15000);
+        var guard = setTimeout(function(){bad('timeout after 10s');}, 10000);
 
         /* 1. plain fetch. text/plain avoids a CORS preflight, and Apps Script
               answers with Access-Control-Allow-Origin, so we can READ the
@@ -1157,10 +1160,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var good = false;
             try { good = JSON.parse(t).ok === true; }
             catch(e){ good = /"ok"\s*:\s*true/.test(t); }
-            if (good) { console.log('[form] sheet confirmed'); ok(); }
-            else { console.warn('[form] sheet replied but not ok:', t); noCors(); }
+            if (good) { ok('confirmed'); }
+            else { LOG('sheet replied, not ok: '+String(t).slice(0,120)); noCors(); }
           })
-          .catch(function(e){ console.warn('[form] fetch blocked:', e); noCors(); });
+          .catch(function(e){ LOG('fetch blocked: '+e); noCors(); });
         } else {
           viaIframe();
         }
@@ -1174,7 +1177,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: body
           })
-          .then(function(){ console.log('[form] sent (no-cors)'); ok(); })
+          .then(function(){ ok('no-cors'); })
           .catch(function(){ viaBeacon(); });
         }
 
@@ -1184,7 +1187,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           try {
             var blob = new Blob([body], { type: 'text/plain;charset=utf-8' });
             if (navigator.sendBeacon && navigator.sendBeacon(SHEET_ENDPOINT, blob)) {
-              console.log('[form] sent (beacon)'); return ok();
+              return ok('beacon');
             }
           } catch(e){}
           viaIframe();
@@ -1219,8 +1222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           frame.onload = function(){
             loads++;
             if (loads < 2) return;          /* ignore the about:blank load */
-            console.log('[form] sent (iframe)');
-            cleanup(); ok();
+            cleanup(); ok('iframe');
           };
           function cleanup(){
             setTimeout(function(){
@@ -1228,7 +1230,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               try { document.body.removeChild(frame); } catch(e){}
             }, 10000);                       /* never yank it early */
           }
-          setTimeout(function(){ cleanup(); ok(); }, 9000);
+          setTimeout(function(){ cleanup(); ok('iframe-timeout'); }, 5000);
           form.submit();
         }
       }
@@ -1253,9 +1255,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         btn.textContent = 'Sending...'; btn.setAttribute('disabled','disabled');
 
-        send(d, done, function(){
+        send(d, function(how){
+          if(how === 'confirmed'){ done(); return; }
+          /* It may have gone through, but nothing confirmed it — usually a
+             browser extension or network blocking script.google.com. Send it
+             by WhatsApp too rather than risk losing the enquiry. */
           reset();
-          fail('We could not reach the booking system. Please use the WhatsApp button, it opens with your details ready.');
+          fail('Your browser blocked our booking system, so we could not confirm it. WhatsApp is opening with your details filled in.');
+          waFallback(d);
+        }, function(){
+          reset();
+          fail('We could not reach the booking system. WhatsApp is opening with your details ready.');
           waFallback(d);
         });
       });
@@ -1266,7 +1276,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
     <div class="foot-cols">
       <div class="foot-brand"><div class="wm">Dr Prateek Sharma</div><p>Facelift &amp; Facial Plastic Surgeon. Two clinics in Delhi: Eveite, Laxmi Nagar and Aloysia Eveite, Safdarjung Enclave.</p></div>
-      <div><h5>The Practice</h5><ul><li><a href="about.html">The Surgeon</a></li><li><a href="the-facelift.html">The Facelift</a></li><li><a href="procedures.html">Procedures</a></li><li><a href="results.html">Results</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html">Book a consultation</a></li></ul></div>
+      <div><h5>The Practice</h5><ul><li><a href="best-facelift-surgeon-delhi.html">The Surgeon</a></li><li><a href="the-facelift.html">The Facelift</a></li><li><a href="procedures.html">Procedures</a></li><li><a href="results.html">Results</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html">Book a consultation</a></li></ul></div>
       <div><h5>Connect</h5><ul><li><a href="tel:+918384005197">+91 8384 005197</a></li><li><a href="https://instagram.com/thefaceliftsurgeon">@thefaceliftsurgeon</a></li><li><a href="https://instagram.com/eveite_aesthetics">@eveite_aesthetics</a></li><li><a href="https://instagram.com/ae.stheticsurgery">@ae.stheticsurgery</a></li></ul></div>
       <div><h5>Locations</h5><ul><li><a href="facelift-south-delhi.html">Facelift in South Delhi</a></li><li><a href="facelift-east-delhi.html">Facelift in East Delhi</a></li><li><a href="facelift-delhi-ncr.html">Delhi NCR patients</a></li></ul></div>
       <div><h5>Two Delhi clinics</h5><ul><li><b style="color:#c8a463">Eveite</b><br>F-6/B, Street No. 15,<br>Laxmi Nagar, New Delhi 110092</li><li style="margin-top:.7rem"><b style="color:#c8a463">Aloysia Eveite</b><br>A-1/298, Basement,<br>Safdarjung Enclave,<br>New Delhi 110029</li></ul></div>
