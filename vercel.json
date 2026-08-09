@@ -408,6 +408,146 @@
       "source": "/the-surgeon",
       "destination": "/best-facelift-surgeon-delhi",
       "permanent": true
+    },
+    {
+      "source": "/eyelid-surgery-delhi",
+      "destination": "/blepharoplasty-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/blepharoplasty",
+      "destination": "/blepharoplasty-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/eye-bag-surgery-delhi",
+      "destination": "/blepharoplasty-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/brow-lift",
+      "destination": "/brow-lift-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/forehead-lift-delhi",
+      "destination": "/brow-lift-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/chin-augmentation-delhi",
+      "destination": "/chin-and-jawline-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/jawline-surgery-delhi",
+      "destination": "/chin-and-jawline-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/double-chin-surgery-delhi",
+      "destination": "/chin-and-jawline-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/buccal-fat-delhi",
+      "destination": "/buccal-fat-removal-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/cheek-reduction-delhi",
+      "destination": "/buccal-fat-removal-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/fat-transfer-face-delhi",
+      "destination": "/facial-fat-grafting-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/facial-fat-transfer",
+      "destination": "/facial-fat-grafting-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/lip-lift",
+      "destination": "/lip-lift-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/ear-surgery-delhi",
+      "destination": "/otoplasty-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/ear-pinning-delhi",
+      "destination": "/otoplasty-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/otoplasty",
+      "destination": "/otoplasty-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/secondary-facelift",
+      "destination": "/revision-facelift",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-revision-delhi",
+      "destination": "/revision-facelift",
+      "permanent": true
+    },
+    {
+      "source": "/deep-neck-lift",
+      "destination": "/deep-neck-lift-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/ponytail-lift",
+      "destination": "/ponytail-facelift",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-swelling",
+      "destination": "/facelift-swelling-timeline",
+      "permanent": true
+    },
+    {
+      "source": "/ozempic-face",
+      "destination": "/ozempic-face-treatment-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/ozempic-face-delhi",
+      "destination": "/ozempic-face-treatment-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-india-nri",
+      "destination": "/facelift-for-nri-patients",
+      "permanent": true
+    },
+    {
+      "source": "/medical-tourism-facelift-india",
+      "destination": "/facelift-for-nri-patients",
+      "permanent": true
+    },
+    {
+      "source": "/botox-vs-facelift",
+      "destination": "/facelift-vs-botox-and-fillers",
+      "permanent": true
+    },
+    {
+      "source": "/fillers-vs-facelift",
+      "destination": "/facelift-vs-botox-and-fillers",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-consultation-questions",
+      "destination": "/questions-to-ask-your-facelift-surgeon",
+      "permanent": true
     }
   ]
 }
