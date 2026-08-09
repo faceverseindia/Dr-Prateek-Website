@@ -197,13 +197,14 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
       transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1),background .25s,color .25s;
     }
     nav#nav.open a{opacity:1;transform:none}
-    nav#nav.open a:nth-child(1){transition-delay:.10s}
-    nav#nav.open a:nth-child(2){transition-delay:.15s}
-    nav#nav.open a:nth-child(3){transition-delay:.20s}
-    nav#nav.open a:nth-child(4){transition-delay:.25s}
-    nav#nav.open a:nth-child(5){transition-delay:.30s}
-    nav#nav.open a:nth-child(6){transition-delay:.35s}
-    nav#nav.open a:nth-child(7){transition-delay:.40s}
+    nav#nav.open a:nth-of-type(1){transition-delay:.08s}
+    nav#nav.open a:nth-of-type(2){transition-delay:.13s}
+    nav#nav.open a:nth-of-type(3){transition-delay:.18s}
+    nav#nav.open a:nth-of-type(4){transition-delay:.23s}
+    nav#nav.open a:nth-of-type(5){transition-delay:.28s}
+    nav#nav.open a:nth-of-type(6){transition-delay:.33s}
+    nav#nav.open a:nth-of-type(7){transition-delay:.38s}
+    nav#nav.open a:nth-of-type(8){transition-delay:.43s}
 
     nav#nav a::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;background:var(--green);transform:scaleY(0);transform-origin:50% 50%;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
     nav#nav a:hover,nav#nav a:active,nav#nav a.on{background:rgba(63,90,77,.09);color:var(--green)}
@@ -821,6 +822,79 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
   @media(max-width:760px){
     input,select,textarea{font-size:16px}
   }
+
+  /* ---- authority: breathing room + aligned clinic module ---- */
+  .found + .auth-rule{margin-top:3.6rem}
+  /* two clinic cards keep the same card width as the three above, centred */
+  .found.clinics{max-width:747px}
+
+  @media(max-width:1180px){
+    .found.clinics{max-width:min(747px,100%)}
+  }
+  @media(max-width:860px){
+    .found + .auth-rule{margin-top:2.5rem}
+  }
+  @media(max-width:760px){
+    .found.clinics{max-width:none}
+    .found + .auth-rule{margin-top:2.3rem}
+  }
+
+  /* ---- contact page on mobile: form first, clinic details after ---- */
+  @media(max-width:820px){
+    .spa-sub .contact-grid{display:flex;flex-direction:column}
+    .spa-sub .contact-grid .cform{order:1}
+    .spa-sub .contact-grid .cinfo{order:2}
+  }
+
+  /* ---- drawer footer: WhatsApp ---- */
+  .nf-wa{display:none}
+  @media(max-width:940px){
+    .nav-foot .nf-wa{
+      display:flex;align-items:center;justify-content:center;gap:.6rem;
+      width:100%;min-height:48px;padding:.85rem 1rem;
+      border:1px solid var(--green);border-radius:100px;
+      background:var(--green);color:#f4efe6;
+      font-family:var(--f);font-size:.62rem;font-weight:700;
+      letter-spacing:.13em;text-transform:uppercase;
+      opacity:1;transform:none;
+      transition:background .3s,color .3s;
+    }
+    .nav-foot .nf-wa::before{display:none}
+    .nav-foot .nf-wa svg{width:17px;height:17px;flex:0 0 17px}
+    .nav-foot .nf-wa:active{background:var(--green-d);border-color:var(--green-d)}
+  }
+  /* seven links now — keep the desktop bar comfortable */
+  @media(max-width:1120px) and (min-width:941px){
+    nav{gap:1.15rem}
+    nav a{font-size:.63rem;letter-spacing:.09em}
+    .nav-in{gap:1rem}
+  }
+
+  /* ---- anatomy layer dots ---- */
+  .anat-dots{display:none}
+  @media(max-width:760px){
+    /* no longer a 3-screen scroll hijack: one panel you swipe through */
+    .anat{height:auto}
+    .anat-sticky{position:static;height:auto;padding:2.7rem var(--pad);gap:1.2rem}
+    .anat-stage{touch-action:pan-y}
+    .anat-frame{max-width:min(78vw,360px)}
+    .anat-copy p{min-height:5.2em}
+    .anat-copy .ascribble{margin-top:.8rem;font-size:1.05rem}
+
+    .anat-dots{
+      display:flex;gap:.5rem;justify-content:center;align-items:center;
+      margin:.2rem auto 0;
+    }
+    .anat-dots button{
+      width:26px;height:26px;padding:0;border:none;background:none;cursor:pointer;
+      display:grid;place-items:center;
+    }
+    .anat-dots button::after{
+      content:"";width:7px;height:7px;border-radius:50%;
+      background:var(--line);transition:background .3s,transform .3s;
+    }
+    .anat-dots button.on::after{background:var(--green);transform:scale(1.45)}
+  }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "AboutPage", "name": "The Surgeon", "url": "https://drprateeksharma.com/about.html", "mainEntity": {"@id": "https://drprateeksharma.com/#physician"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MedicalProcedure", "name": "Deep Plane Facelift", "procedureType": "https://schema.org/SurgicalProcedure", "howPerformed": "The deep plane facelift releases the ligaments anchoring the SMAS layer and repositions the deep structural layer of the face, redraping the skin without tension for a natural result.", "bodyLocation": "Face", "performer": {"@id": "https://drprateeksharma.com/#physician"}, "url": "https://drprateeksharma.com/the-facelift.html"}</script>
@@ -896,13 +970,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
       <nav id="nav">
         <div class="nav-head"><span class="nh-k">Menu</span><button class="nav-close" id="navClose" aria-label="Close menu">&#10005;</button></div>
+        <a href="#/">Home</a>
         <a href="#/about">The Surgeon</a>
         <a href="#/the-facelift">The Facelift</a>
         <a href="#/procedures">Procedures</a>
         <a href="#/results">Results</a>
         <a href="#/journal">Journal</a>
         <a href="#/contact">Contact</a>
-              <div class="nav-foot"><span class="nf-k">Speak to the clinic</span><a class="nf-tel" href="tel:+918384005197">+91 8384 005197</a></div>
+              <div class="nav-foot"><span class="nf-k">Speak to the clinic</span><a class="nf-wa" href="https://wa.me/918384005197?text=Hey%21%20I%20want%20to%20talk%20to%20Dr%20Prateek%20Sharma%20now.%20Please%20fix%20my%20appointment" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.24 8.24 0 0 1 0 16.48m4.52-6.17c-.25-.12-1.47-.72-1.69-.81s-.39-.12-.56.13-.64.81-.79.97-.29.19-.54.06a6.7 6.7 0 0 1-1.99-1.23 7.4 7.4 0 0 1-1.37-1.71c-.14-.25-.01-.38.11-.5s.25-.29.37-.44.17-.25.25-.41a.46.46 0 0 0-.02-.44c-.06-.12-.56-1.35-.77-1.85s-.4-.42-.56-.43h-.47a.9.9 0 0 0-.66.31 2.77 2.77 0 0 0-.86 2.06 4.8 4.8 0 0 0 1.01 2.56c.12.16 1.75 2.67 4.23 3.74a13 13 0 0 0 1.41.52 3.4 3.4 0 0 0 1.56.1 2.55 2.55 0 0 0 1.67-1.18 2.05 2.05 0 0 0 .15-1.18c-.06-.11-.22-.17-.47-.29"/></svg><span>Connect through WhatsApp</span></a></div>
         <p class="nav-hint">Swipe left to close</p>
       </nav>
       <a href="#/contact" class="btn nav-book">Book a consultation</a>
@@ -1246,6 +1321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="tel:+918384005197">+91 8384 005197</a>
         <a href="https://instagram.com/thefaceliftsurgeon">@thefaceliftsurgeon</a>
         <a href="https://instagram.com/eveite_aesthetics">@eveite_aesthetics</a>
+        <a href="https://instagram.com/ae.stheticsurgery">@ae.stheticsurgery</a>
       </div>
     </div>
   </section>
@@ -4414,6 +4490,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ["07","Skeletal Foundation","The bone beneath it all, the architecture every layer is built upon."]];
   const MARK=[13,25.5,38,50.5,63,75.5,88];
   let lastSeg=-1;
+
+  /* anatomy: scroll-driven on desktop, swipe-driven on phones */
+  const anatSwipe=()=>innerWidth<=760;
+  let aDots=null;
+  function setAnat(seg,force){
+    seg=Math.min(Math.max(seg,0),6);
+    if(seg===lastSeg&&!force)return;
+    lastSeg=seg;
+    if(aMarker)aMarker.style.left=(MARK[seg]-6.5)+'%';
+    if(aLn)aLn.textContent=ANAT[seg][0];
+    if(aTitle)aTitle.textContent=ANAT[seg][1];
+    if(aDesc)aDesc.textContent=ANAT[seg][2];
+    if(aDots)[...aDots.children].forEach((d,i)=>d.classList.toggle('on',i===seg));
+  }
+  (function(){
+    if(!anat)return;
+    const stage=document.getElementById('aStage'),sticky=anat.querySelector('.anat-sticky');
+    if(!stage||!sticky)return;
+
+    aDots=document.createElement('div');
+    aDots.className='anat-dots';
+    ANAT.forEach((row,i)=>{
+      const b=document.createElement('button');
+      b.type='button';
+      b.setAttribute('aria-label','Layer '+row[0]+' \u2014 '+row[1]);
+      b.addEventListener('click',()=>setAnat(i));
+      aDots.appendChild(b);
+    });
+    sticky.appendChild(aDots);
+    setAnat(0,true);
+
+    let x0=null,y0=null,lock=false;
+    stage.addEventListener('touchstart',e=>{
+      if(!anatSwipe())return;
+      const t=e.touches[0];x0=t.clientX;y0=t.clientY;lock=false;
+    },{passive:true});
+    stage.addEventListener('touchmove',e=>{
+      if(!anatSwipe()||x0===null)return;
+      const t=e.touches[0],dx=t.clientX-x0,dy=t.clientY-y0;
+      if(!lock){
+        if(Math.abs(dx)<10&&Math.abs(dy)<10)return;
+        if(Math.abs(dy)>Math.abs(dx)){x0=null;return;}   /* vertical: let the page scroll */
+        lock=true;
+      }
+      if(e.cancelable)e.preventDefault();
+      if(Math.abs(dx)>44){setAnat(lastSeg+(dx<0?1:-1));x0=t.clientX;y0=t.clientY;}
+    },{passive:false});
+    const endSwipe=()=>{x0=null;lock=false;};
+    stage.addEventListener('touchend',endSwipe);
+    stage.addEventListener('touchcancel',endSwipe);
+
+    function anatMode(){
+      const sc=anat.querySelector('.ascribble');
+      if(anatSwipe()){
+        if(aImg)aImg.style.transform='translate(-50%,-50%) scale(1.02)';
+        if(sc)sc.textContent='swipe \u2014 and go deeper \u2192';
+      }else if(sc)sc.textContent='scroll \u2014 and go deeper \u2193';
+    }
+    anatMode();
+    addEventListener('resize',anatMode);
+  })();
   const jline=document.getElementById('jline'),jfill=document.getElementById('jfill'),jsteps=[...document.querySelectorAll('.jstep')];
   const idxLinks=[...document.querySelectorAll('.sindex a')];
 
@@ -4423,12 +4560,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     hdr.classList.toggle('solid',y>40);
     if(!reduce&&!isMobile()){for(const el of plx){const r=el.getBoundingClientRect();const mid=r.top+r.height/2-innerHeight/2;el.style.transform=`translate3d(0,${(-mid*parseFloat(el.dataset.parallax)).toFixed(1)}px,0)`;}}
     // layered anatomy — image + viewfinder
-    if(anat){
+    if(anat&&!anatSwipe()){
       const r=anat.getBoundingClientRect(),total=anat.offsetHeight-innerHeight;
       let p=Math.min(Math.max(-r.top/total,0),1);
       const seg=Math.min(Math.floor(p*7),6);
       if(aImg)aImg.style.transform=`translate(-50%,-50%) scale(${(1.02+p*0.06).toFixed(3)})`;
-      if(seg!==lastSeg){lastSeg=seg;aMarker.style.left=(MARK[seg]-6.5)+'%';aLn.textContent=ANAT[seg][0];aTitle.textContent=ANAT[seg][1];aDesc.textContent=ANAT[seg][2];}
+      setAnat(seg);
     }
     // journey
     if(jline){
