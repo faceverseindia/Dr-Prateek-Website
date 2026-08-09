@@ -1252,7 +1252,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="result" id="qResult">
         <div class="rl">Based on your answers, a deep plane facelift consultation could explore <b id="rTopics">the face</b>.</div>
         <p class="disc">This tool is for general information and self-reflection only. It is not a medical assessment, diagnosis, or recommendation. Only a qualified surgeon can advise on what, if anything, is appropriate for you.</p>
-        <a href="https://wa.me/918384005197?text=Hey%21%20I%20want%20to%20talk%20to%20Dr%20Prateek%20Sharma%20now.%20Please%20fix%20my%20appointment" target="_blank" rel="noopener" class="btn btn-wa" style="background:#efe9df;color:var(--green);border-color:#efe9df"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" style="flex:0 0 auto"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.38-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path fill="currentColor" d="M12.04 2C6.6 2 2.18 6.42 2.18 11.86c0 1.74.46 3.44 1.32 4.94L2.05 22l5.34-1.4a9.83 9.83 0 0 0 4.65 1.18h.01c5.43 0 9.85-4.42 9.85-9.86 0-2.63-1.02-5.11-2.88-6.97A9.79 9.79 0 0 0 12.04 2zm0 17.94h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.34c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.86 5.8 2.41a8.15 8.15 0 0 1 2.4 5.8c0 4.52-3.68 8.19-8.2 8.19z"/></svg>Book my consultation now</a>
+        <a id="qWa" href="https://wa.me/918384005197?text=Hey%21%20I%20want%20to%20book%20a%20consultation%20with%20Dr%20Prateek%20Sharma%20Now." target="_blank" rel="noopener" class="btn btn-wa" style="background:#efe9df;color:var(--green);border-color:#efe9df"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" style="flex:0 0 auto"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.38-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path fill="currentColor" d="M12.04 2C6.6 2 2.18 6.42 2.18 11.86c0 1.74.46 3.44 1.32 4.94L2.05 22l5.34-1.4a9.83 9.83 0 0 0 4.65 1.18h.01c5.43 0 9.85-4.42 9.85-9.86 0-2.63-1.02-5.11-2.88-6.97A9.79 9.79 0 0 0 12.04 2zm0 17.94h-.01a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.34c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.86 5.8 2.41a8.15 8.15 0 0 1 2.4 5.8c0 4.52-3.68 8.19-8.2 8.19z"/></svg>Book my consultation now</a>
       </div>
     </div>
   </section>
@@ -4473,7 +4473,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const qText=document.getElementById('qText'),qOpts=document.getElementById('qOpts'),qBar=document.getElementById('qBar'),card=document.getElementById('qCard'),res=document.getElementById('qResult'),rTopics=document.getElementById('rTopics');
     function render(){const cur=Q[i];qText.textContent=cur.q;qOpts.innerHTML='';cur.o.forEach(o=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>{picks.push(o);next();};qOpts.appendChild(b);});qBar.style.width=(i/Q.length*100)+'%';}
     function next(){i++;if(i<Q.length){render();}else{qBar.style.width='100%';finish();}}
-    function finish(){const t=topics[picks[0]]||"the areas that matter to you";rTopics.textContent=t;card.style.display='none';res.classList.add('show');}
+    function finish(){
+      const t=topics[picks[0]]||"the areas that matter to you";
+      rTopics.textContent=t;
+      card.style.display='none';
+      res.classList.add('show');
+
+      /* compose the WhatsApp message from what they actually chose */
+      const wa=document.getElementById('qWa');
+      if(wa){
+        const L=[
+          "Hey! I want to book a consultation with Dr Prateek Sharma Now.",
+          "",
+          "Here is what I answered in the self-assessment:",
+          ""
+        ];
+        Q.forEach((row,n)=>{
+          if(picks[n]) L.push("\u2022 "+row.q+"\n   \u2192 "+picks[n]);
+        });
+        L.push("");
+        L.push("Suggested focus: "+t+".");
+        wa.href="https://wa.me/918384005197?text="+encodeURIComponent(L.join("\n"));
+      }
+    }
     render();
   })();
 
