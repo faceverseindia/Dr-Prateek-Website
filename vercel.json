@@ -73,12 +73,12 @@
     },
     {
       "source": "/about-us",
-      "destination": "/about",
+      "destination": "/best-facelift-surgeon-delhi",
       "permanent": true
     },
     {
       "source": "/about-us/",
-      "destination": "/about",
+      "destination": "/best-facelift-surgeon-delhi",
       "permanent": true
     },
     {
@@ -93,11 +93,6 @@
     },
     {
       "source": "/facelift-surgeon-delhi",
-      "destination": "/facelift-surgeon-in-delhi",
-      "permanent": true
-    },
-    {
-      "source": "/best-facelift-surgeon-delhi",
       "destination": "/facelift-surgeon-in-delhi",
       "permanent": true
     },
@@ -334,6 +329,21 @@
     {
       "source": "/facelift-recovery-delhi",
       "destination": "/facelift-recovery-time",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/best-facelift-surgeon-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/best-facelift-surgeon-delhi",
+      "permanent": true
+    },
+    {
+      "source": "/the-surgeon",
+      "destination": "/best-facelift-surgeon-delhi",
       "permanent": true
     }
   ]
