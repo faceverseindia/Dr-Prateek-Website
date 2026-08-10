@@ -475,21 +475,6 @@
       "permanent": true
     },
     {
-      "source": "/ear-surgery-delhi",
-      "destination": "/otoplasty-delhi",
-      "permanent": true
-    },
-    {
-      "source": "/ear-pinning-delhi",
-      "destination": "/otoplasty-delhi",
-      "permanent": true
-    },
-    {
-      "source": "/otoplasty",
-      "destination": "/otoplasty-delhi",
-      "permanent": true
-    },
-    {
       "source": "/secondary-facelift",
       "destination": "/revision-facelift",
       "permanent": true
@@ -547,6 +532,26 @@
     {
       "source": "/facelift-consultation-questions",
       "destination": "/questions-to-ask-your-facelift-surgeon",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-anaesthesia",
+      "destination": "/facelift-anaesthesia-and-safety",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-general-anaesthesia",
+      "destination": "/facelift-anaesthesia-and-safety",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-price-factors",
+      "destination": "/what-affects-facelift-cost",
+      "permanent": true
+    },
+    {
+      "source": "/facelift-cost-breakdown",
+      "destination": "/what-affects-facelift-cost",
       "permanent": true
     }
   ]
