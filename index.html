@@ -1057,6 +1057,22 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
     .nav-sub a[aria-current="page"]{color:var(--green)}
     .nav-item.open .nav-sub{padding-bottom:.4rem}
   }
+
+  /* the clinics line sits under its own rule already — keep it quiet */
+  .auth-lede-quiet{
+    font-style:normal;
+    font-family:var(--f);
+    font-size:.6rem;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:rgba(239,233,223,.38);
+    max-width:none;
+    margin-bottom:1.5rem;
+  }
+  @media(max-width:760px){
+    .auth-lede-quiet{font-size:.55rem;letter-spacing:.13em;margin-bottom:1.15rem}
+  }
 </style>
 
 <script type="application/ld+json">
@@ -1390,7 +1406,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
     <span class="auth-rule">Where to find him</span>
-    <p class="auth-lede reveal">Two clinics in Delhi. One standard of care.</p>
+    <p class="auth-lede auth-lede-quiet reveal">Two clinics in Delhi. One standard of care.</p>
 
     <div class="found clinics reveal">
       <a class="fx fx-clinic" href="https://eveite.in" target="_blank" rel="noopener">
