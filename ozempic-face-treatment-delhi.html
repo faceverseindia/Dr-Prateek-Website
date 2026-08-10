@@ -945,6 +945,219 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
     .nav-foot .nav-ig a::before{display:none}
     .nav-foot .nav-ig a:active,.nav-foot .nav-ig a:hover{color:var(--green);background:none}
   }
+
+  /* ---- gutters: nothing should touch the screen edge ---- */
+  .spa-sub .sec{padding-left:var(--pad);padding-right:var(--pad)}
+  .spa-sub .sec > .wrap,
+  .spa-sub .sec > .wrap-narrow{padding-left:0;padding-right:0}
+  @media(max-width:760px){
+    :root{--pad:clamp(1.15rem,5vw,7rem)}
+    .spa-sub .sec{padding-left:1.15rem;padding-right:1.15rem}
+    .spa-sub .doc{padding-left:1.15rem;padding-right:1.15rem}
+    .spa-sub .phero,.spa-sub .jhero{padding-left:1.15rem;padding-right:1.15rem}
+    .spa-sub .related,.spa-sub .ctaband{padding-left:1.15rem;padding-right:1.15rem}
+    .spa-sub .contact-grid,
+    .spa-sub .frow,
+    .spa-sub .prose-blk,
+    .spa-sub .creds,
+    .spa-sub .proc-grid,
+    .spa-sub .jgrid,
+    .spa-sub .feat,
+    .spa-sub .steps{padding-left:0;padding-right:0}
+    /* long words and URLs must not force a sideways scroll */
+    .spa-sub .prose,.spa-sub .cinfo,.spa-sub .cblock{overflow-wrap:break-word;word-break:normal}
+    .spa-sub table{display:block;overflow-x:auto}
+  }
+
+  /* ================= NAVIGATION: dropdowns + drawer accordion ================= */
+  .nav-item{position:relative;display:flex;align-items:center}
+  nav .nav-top{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+               color:var(--ink-soft);transition:color .25s;position:relative;white-space:nowrap}
+  .nav-exp{display:none}
+
+  /* ---- desktop: hover / focus dropdown ---- */
+  @media(min-width:941px){
+    nav{gap:1.35rem}
+    .nav-item.has-sub > .nav-top{padding-right:.75rem}
+    .nav-item.has-sub > .nav-top::before{
+      content:"";position:absolute;right:0;top:50%;width:5px;height:5px;margin-top:-3px;
+      border-right:1px solid currentColor;border-bottom:1px solid currentColor;
+      transform:rotate(45deg);opacity:.55;transition:transform .25s,opacity .25s}
+    .nav-item.has-sub:hover > .nav-top::before,
+    .nav-item.has-sub.open > .nav-top::before{opacity:1;transform:rotate(225deg);margin-top:-1px}
+
+    .nav-sub{
+      position:absolute;top:100%;left:50%;transform:translate(-50%,6px);
+      min-width:260px;max-width:320px;padding:.7rem 0;margin-top:.85rem;
+      background:#f7f3ec;border:1px solid var(--line);border-radius:12px;
+      box-shadow:0 24px 60px -28px rgba(35,33,28,.45);
+      opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .28s ease,transform .28s cubic-bezier(.2,.7,.2,1),visibility .28s;
+      z-index:120}
+    .nav-item.has-sub:hover .nav-sub,
+    .nav-item.has-sub:focus-within .nav-sub,
+    .nav-item.has-sub.open .nav-sub{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+    /* bridge the gap so the panel does not close while the pointer travels */
+    .nav-item.has-sub::after{content:"";position:absolute;top:100%;left:0;right:0;height:.9rem}
+    .nav-sub a{display:block;padding:.6rem 1.15rem;font-family:var(--serif);font-size:.95rem;
+               font-weight:300;letter-spacing:0;text-transform:none;color:var(--ink);
+               transition:background .2s,color .2s;white-space:normal}
+    .nav-sub a::after{display:none}
+    .nav-sub a:hover{background:rgba(63,90,77,.08);color:var(--green)}
+    .nav-sub a[aria-current="page"]{color:var(--green);font-style:italic}
+  }
+  @media(min-width:941px) and (max-width:1200px){
+    nav{gap:1rem}
+    nav .nav-top{font-size:.62rem;letter-spacing:.08em}
+    .nav-in{gap:.9rem}
+  }
+
+  /* ---- mobile drawer: accordion ---- */
+  @media(max-width:940px){
+    nav#nav{display:block}
+    .nav-item{display:block;position:relative;opacity:0;transform:translateX(-14px);
+              transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1)}
+    nav#nav.open .nav-item{opacity:1;transform:none}
+    nav#nav.open .nav-item:nth-of-type(1){transition-delay:.08s}
+    nav#nav.open .nav-item:nth-of-type(2){transition-delay:.13s}
+    nav#nav.open .nav-item:nth-of-type(3){transition-delay:.18s}
+    nav#nav.open .nav-item:nth-of-type(4){transition-delay:.23s}
+    nav#nav.open .nav-item:nth-of-type(5){transition-delay:.28s}
+    nav#nav.open .nav-item:nth-of-type(6){transition-delay:.33s}
+    nav#nav.open .nav-item:nth-of-type(7){transition-delay:.38s}
+
+    nav#nav .nav-top{
+      display:flex;align-items:center;
+      font-family:var(--serif);font-size:1.22rem;font-weight:300;
+      letter-spacing:0;text-transform:none;color:var(--ink);
+      padding:.8rem 3.2rem .8rem 1.5rem;min-height:50px;opacity:1;transform:none}
+    nav#nav .nav-top::before{display:none}
+    nav#nav .nav-item > .nav-top::after{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;
+      background:var(--green);transform:scaleY(0);transition:transform .3s;height:auto;border:0}
+    nav#nav .nav-item > .nav-top:active{background:rgba(63,90,77,.09);color:var(--green)}
+    nav#nav .nav-item > .nav-top:active::after{transform:scaleY(1)}
+    nav#nav .nav-top[aria-current="page"]{color:var(--green);font-style:italic}
+
+    /* the expand control is separate from the link, so tapping the label still navigates */
+    .nav-exp{display:flex;position:absolute;top:0;right:0;width:56px;height:50px;
+             align-items:center;justify-content:center;background:none;border:0;cursor:pointer;
+             -webkit-tap-highlight-color:transparent}
+    .nav-exp .chev{width:8px;height:8px;border-right:1.5px solid var(--muted-d);
+                   border-bottom:1.5px solid var(--muted-d);transform:rotate(45deg) translate(-2px,-2px);
+                   transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+    .nav-exp[aria-expanded="true"] .chev{transform:rotate(225deg) translate(-2px,-2px);border-color:var(--green)}
+
+    .nav-sub{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.2,.7,.2,1)}
+    .nav-sub a{display:block;padding:.55rem 1.5rem .55rem 2.1rem;min-height:42px;
+               font-family:var(--f);font-size:.8rem;font-weight:500;letter-spacing:.01em;
+               text-transform:none;color:var(--muted);opacity:1;transform:none;
+               display:flex;align-items:center}
+    .nav-sub a::before{content:"";position:absolute;left:1.5rem;width:0}
+    .nav-sub a:active{color:var(--green);background:rgba(63,90,77,.07)}
+    .nav-sub a[aria-current="page"]{color:var(--green)}
+    .nav-item.open .nav-sub{padding-bottom:.4rem}
+  }
+
+  /* ============ MOBILE DRAWER: clearer, sectioned layout ============ */
+  @media(max-width:940px){
+    nav#nav{
+      width:min(100vw,430px);
+      padding:0 0 calc(1.4rem + env(safe-area-inset-bottom));
+      background:#faf7f2;
+    }
+
+    /* header row: label left, close right, hairline under */
+    .nav-head{
+      padding:calc(1.05rem + env(safe-area-inset-top)) 1.35rem 1.05rem;
+      margin-bottom:0;
+      border-bottom:1px solid var(--line);
+    }
+    .nav-head .nh-k{font-size:.55rem;letter-spacing:.26em;color:var(--muted-d)}
+
+    /* each top-level item is a band separated by a hairline */
+    .nav-item{border-bottom:1px solid var(--line-soft)}
+    .nav-item:last-of-type{border-bottom:1px solid var(--line)}
+
+    nav#nav .nav-top{
+      font-family:var(--f);
+      font-size:.82rem;
+      font-weight:700;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      color:var(--ink);
+      padding:1.15rem 3.4rem 1.15rem 1.35rem;
+      min-height:56px;
+    }
+
+    /* chevron: larger target, thinner stroke, matches the section rhythm */
+    .nav-exp{width:60px;height:56px}
+    .nav-exp .chev{
+      width:9px;height:9px;
+      border-right:1.5px solid var(--ink-soft);
+      border-bottom:1.5px solid var(--ink-soft);
+      transform:rotate(45deg) translate(-2px,-2px);
+    }
+
+    /* sub-links: sentence case, indented, roomier */
+    .nav-sub{background:transparent}
+    .nav-item.open .nav-sub{padding-bottom:.75rem}
+    .nav-sub a{
+      font-family:var(--f);
+      font-size:.86rem;
+      font-weight:400;
+      letter-spacing:.01em;
+      text-transform:none;
+      color:var(--muted);
+      padding:.72rem 1.35rem .72rem 2.35rem;
+      min-height:46px;
+    }
+    .nav-sub a[aria-current="page"]{color:var(--green);font-weight:600}
+
+    /* footer block */
+    .nav-foot{
+      padding:1.35rem 1.35rem 0;
+      border-top:0;
+      margin-top:.2rem;
+    }
+    .nav-foot .nf-k{font-size:.5rem;letter-spacing:.24em;margin-bottom:.7rem}
+
+    /* WhatsApp button — same treatment as the quiz button on the homepage:
+       cream fill, green label, pill, small */
+    .nav-foot .nf-wa{
+      display:inline-flex;
+      width:auto;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      background:#efe9df;
+      color:var(--green);
+      border:1px solid #efe9df;
+      border-radius:100px;
+      padding:.66rem 1.25rem;
+      min-height:0;
+      font-family:var(--f);
+      font-size:.64rem;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .nav-foot .nf-wa svg{width:15px;height:15px;flex:0 0 15px;margin-top:-1px}
+    .nav-foot .nf-wa:active{background:var(--green);color:#efe9df;border-color:var(--green)}
+
+    .nav-ig{margin-top:1.1rem;gap:0}
+    .nav-foot .nav-ig a{
+      font-size:.72rem;color:var(--muted-d);
+      padding:.4rem 0;min-height:32px;
+    }
+    .nav-hint{padding:1.1rem 1.35rem 0;font-size:.5rem;letter-spacing:.2em;color:var(--line)}
+  }
+  @media(max-width:400px){
+    nav#nav .nav-top{font-size:.76rem;padding-left:1.15rem}
+    .nav-sub a{padding-left:2.1rem;font-size:.82rem}
+    .nav-head{padding-left:1.15rem;padding-right:1.15rem}
+    .nav-foot{padding-left:1.15rem;padding-right:1.15rem}
+  }
 </style>
 
 
@@ -1004,14 +1217,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
       <nav id="nav">
         <div class="nav-head"><span class="nh-k">Menu</span><button class="nav-close" id="navClose" aria-label="Close menu">&#10005;</button></div>
-        <a href="/">Home</a>
-        <a href="/best-facelift-surgeon-delhi">The Surgeon</a>
-        <a href="/the-facelift">The Facelift</a>
-        <a href="/procedures">Procedures</a>
-        <a href="/results">Results</a>
-        <a href="/journal">Journal</a>
-        <a href="/contact">Contact</a>
-              <div class="nav-foot"><span class="nf-k">Speak to the clinic</span><a class="nf-wa" href="https://wa.me/918384005197?text=Hey%21%20I%20want%20to%20talk%20to%20Dr%20Prateek%20Sharma%20now.%20Please%20fix%20my%20appointment" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.24 8.24 0 0 1 0 16.48m4.52-6.17c-.25-.12-1.47-.72-1.69-.81s-.39-.12-.56.13-.64.81-.79.97-.29.19-.54.06a6.7 6.7 0 0 1-1.99-1.23 7.4 7.4 0 0 1-1.37-1.71c-.14-.25-.01-.38.11-.5s.25-.29.37-.44.17-.25.25-.41a.46.46 0 0 0-.02-.44c-.06-.12-.56-1.35-.77-1.85s-.4-.42-.56-.43h-.47a.9.9 0 0 0-.66.31 2.77 2.77 0 0 0-.86 2.06 4.8 4.8 0 0 0 1.01 2.56c.12.16 1.75 2.67 4.23 3.74a13 13 0 0 0 1.41.52 3.4 3.4 0 0 0 1.56.1 2.55 2.55 0 0 0 1.67-1.18 2.05 2.05 0 0 0 .15-1.18c-.06-.11-.22-.17-.47-.29"/></svg><span>Connect through WhatsApp</span></a><div class="nav-ig"><a href="https://instagram.com/thefaceliftsurgeon" target="_blank" rel="noopener">@thefaceliftsurgeon</a><a href="https://instagram.com/eveite_aesthetics" target="_blank" rel="noopener">@eveite_aesthetics</a><a href="https://instagram.com/ae.stheticsurgery" target="_blank" rel="noopener">@ae.stheticsurgery</a></div></div>
+        <div class="nav-item"><a class="nav-top" href="/">Home</a></div>
+        <div class="nav-item has-sub">
+          <a class="nav-top" href="/best-facelift-surgeon-delhi">The Surgeon</a>
+          <button class="nav-exp" type="button" aria-expanded="false" aria-controls="sub1" aria-label="Show The Surgeon pages"><span class="chev" aria-hidden="true"></span></button>
+          <div class="nav-sub" id="sub1">
+            <a href="/best-facelift-surgeon-delhi">About Dr Prateek Sharma</a>
+            <a href="/facelift-surgeon-in-delhi">Choosing a facelift surgeon in Delhi</a>
+            <a href="/best-facelift-surgeon-in-india">Finding the best surgeon in India</a>
+            <a href="/questions-to-ask-your-facelift-surgeon">Questions to ask your surgeon</a>
+          </div>
+        </div>
+        <div class="nav-item has-sub">
+          <a class="nav-top" href="/the-facelift">The Facelift</a>
+          <button class="nav-exp" type="button" aria-expanded="false" aria-controls="sub2" aria-label="Show The Facelift pages"><span class="chev" aria-hidden="true"></span></button>
+          <div class="nav-sub" id="sub2">
+            <a href="/the-facelift">The deep plane facelift</a>
+            <a href="/what-is-a-deep-plane-facelift">What is a deep plane facelift?</a>
+            <a href="/deep-plane-vs-smas-facelift">Deep plane vs SMAS</a>
+            <a href="/types-of-facelift">Types of facelift</a>
+            <a href="/mini-facelift-vs-full-facelift">Mini vs full facelift</a>
+            <a href="/ponytail-facelift">The ponytail facelift</a>
+            <a href="/facelift-vs-thread-lift">Facelift vs thread lift</a>
+            <a href="/facelift-vs-botox-and-fillers">Facelift vs botox and fillers</a>
+          </div>
+        </div>
+        <div class="nav-item has-sub">
+          <a class="nav-top" href="/procedures">Procedures</a>
+          <button class="nav-exp" type="button" aria-expanded="false" aria-controls="sub3" aria-label="Show Procedures pages"><span class="chev" aria-hidden="true"></span></button>
+          <div class="nav-sub" id="sub3">
+            <a href="/procedures">All procedures</a>
+            <a href="/neck-lift-delhi">Neck lift</a>
+            <a href="/deep-neck-lift-delhi">Deep neck lift</a>
+            <a href="/neck-lift-and-jawline">Neck lift and jawline</a>
+            <a href="/mid-face-lift-delhi">Mid-face lift</a>
+            <a href="/rhinoplasty-delhi">Rhinoplasty</a>
+            <a href="/blepharoplasty-delhi">Eyelid surgery</a>
+            <a href="/brow-lift-delhi">Brow lift</a>
+            <a href="/chin-and-jawline-delhi">Chin and jawline</a>
+            <a href="/buccal-fat-removal-delhi">Buccal fat removal</a>
+            <a href="/facial-fat-grafting-delhi">Facial fat grafting</a>
+            <a href="/lip-lift-delhi">Lip lift</a>
+            <a href="/non-surgical-treatments-delhi">Without surgery</a>
+          </div>
+        </div>
+        <div class="nav-item has-sub">
+          <a class="nav-top" href="/results">Results</a>
+          <button class="nav-exp" type="button" aria-expanded="false" aria-controls="sub4" aria-label="Show Results pages"><span class="chev" aria-hidden="true"></span></button>
+          <div class="nav-sub" id="sub4">
+            <a href="/results">Results and philosophy</a>
+            <a href="/facelift-before-and-after">Before and after</a>
+            <a href="/how-long-does-a-facelift-last">How long a facelift lasts</a>
+            <a href="/revision-facelift">Revision facelift</a>
+            <a href="/best-age-for-a-facelift">Best age for a facelift</a>
+            <a href="/facelift-for-men">Facelift for men</a>
+          </div>
+        </div>
+        <div class="nav-item has-sub">
+          <a class="nav-top" href="/journal">Journal</a>
+          <button class="nav-exp" type="button" aria-expanded="false" aria-controls="sub5" aria-label="Show Journal pages"><span class="chev" aria-hidden="true"></span></button>
+          <div class="nav-sub" id="sub5">
+            <a href="/journal">All articles</a>
+            <a href="/facelift-surgery-in-delhi">Facelift surgery in Delhi</a>
+            <a href="/facelift-recovery-time">Recovery, week by week</a>
+            <a href="/facelift-swelling-timeline">Swelling timeline</a>
+            <a href="/how-to-prepare-for-a-facelift">Preparing for surgery</a>
+            <a href="/facelift-scars">Scars</a>
+            <a href="/facelift-risks-and-safety">Risks and safety</a>
+            <a href="/facelift-anaesthesia-and-safety">Anaesthesia</a>
+            <a href="/deep-plane-facelift-cost-india">Cost in India</a>
+            <a href="/what-affects-facelift-cost">What affects the cost</a>
+            <a href="/non-surgical-facelift-options">Non-surgical options</a>
+            <a href="/ozempic-face-treatment-delhi">Ozempic face</a>
+            <a href="/facelift-for-nri-patients">Travelling from abroad</a>
+          </div>
+        </div>
+        <div class="nav-item has-sub">
+          <a class="nav-top" href="/contact">Visit</a>
+          <button class="nav-exp" type="button" aria-expanded="false" aria-controls="sub6" aria-label="Show Visit pages"><span class="chev" aria-hidden="true"></span></button>
+          <div class="nav-sub" id="sub6">
+            <a href="/contact">Book a consultation</a>
+            <a href="/facelift-south-delhi">South Delhi clinic</a>
+            <a href="/facelift-east-delhi">East Delhi clinic</a>
+            <a href="/facelift-delhi-ncr">Across Delhi NCR</a>
+          </div>
+        </div>
+        <div class="nav-foot"><span class="nf-k">Speak to the clinic</span><a class="nf-wa" href="https://wa.me/918384005197?text=Hey%21%20I%20want%20to%20talk%20to%20Dr%20Prateek%20Sharma%20now.%20Please%20fix%20my%20appointment" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.24 8.24 0 0 1 0 16.48m4.52-6.17c-.25-.12-1.47-.72-1.69-.81s-.39-.12-.56.13-.64.81-.79.97-.29.19-.54.06a6.7 6.7 0 0 1-1.99-1.23 7.4 7.4 0 0 1-1.37-1.71c-.14-.25-.01-.38.11-.5s.25-.29.37-.44.17-.25.25-.41a.46.46 0 0 0-.02-.44c-.06-.12-.56-1.35-.77-1.85s-.4-.42-.56-.43h-.47a.9.9 0 0 0-.66.31 2.77 2.77 0 0 0-.86 2.06 4.8 4.8 0 0 0 1.01 2.56c.12.16 1.75 2.67 4.23 3.74a13 13 0 0 0 1.41.52 3.4 3.4 0 0 0 1.56.1 2.55 2.55 0 0 0 1.67-1.18 2.05 2.05 0 0 0 .15-1.18c-.06-.11-.22-.17-.47-.29"/></svg><span>Connect through WhatsApp</span></a><div class="nav-ig"><a href="https://instagram.com/thefaceliftsurgeon" target="_blank" rel="noopener">@thefaceliftsurgeon</a><a href="https://instagram.com/eveite_aesthetics" target="_blank" rel="noopener">@eveite_aesthetics</a><a href="https://instagram.com/ae.stheticsurgery" target="_blank" rel="noopener">@ae.stheticsurgery</a></div></div>
         <p class="nav-hint">Swipe left to close</p>
       </nav>
       <a href="/contact" class="btn nav-book">Book a consultation</a>
@@ -1538,6 +1829,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.body.classList.remove('lock');
   var h=document.getElementById('hdr'); if(h) h.classList.add('ready');
   document.querySelectorAll('.reveal').forEach(function(r){r.classList.add('in');});
+})();
+</script>
+
+<script>
+/* Navigation: accordion in the drawer, click-to-open on touch laptops.
+   Purely additive — the drawer, swipe-to-close and links behave as before. */
+(function(){
+  var nav=document.getElementById('nav');
+  if(!nav) return;
+  var MOBILE=940;
+
+  /* mark the current page in both levels */
+  var here=location.pathname.replace(/\/index(\.html)?$/,'/')||'/';
+  here=here.replace(/\.html$/,'');
+  if(here!=='/') here=here.replace(/\/$/,'');
+  nav.querySelectorAll('a[href]').forEach(function(a){
+    var h=a.getAttribute('href');
+    if(!h||h.charAt(0)!=='/') return;
+    var t=h.replace(/\.html$/,'');
+    if(t!=='/') t=t.replace(/\/$/,'');
+    if(t===here){
+      a.setAttribute('aria-current','page');
+      var item=a.closest('.nav-item');
+      if(item&&!a.classList.contains('nav-top')) openItem(item,true);
+    }
+  });
+
+  function panel(item){ return item.querySelector('.nav-sub'); }
+  function openItem(item,instant){
+    var p=panel(item), btn=item.querySelector('.nav-exp');
+    if(!p) return;
+    item.classList.add('open');
+    if(btn) btn.setAttribute('aria-expanded','true');
+    if(innerWidth<=MOBILE) p.style.maxHeight=(instant?p.scrollHeight+'px':p.scrollHeight+'px');
+  }
+  function closeItem(item){
+    var p=panel(item), btn=item.querySelector('.nav-exp');
+    if(!p) return;
+    item.classList.remove('open');
+    if(btn) btn.setAttribute('aria-expanded','false');
+    if(innerWidth<=MOBILE) p.style.maxHeight='';
+  }
+
+  nav.querySelectorAll('.nav-exp').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault(); e.stopPropagation();
+      var item=btn.closest('.nav-item');
+      if(item.classList.contains('open')) closeItem(item);
+      else {
+        if(innerWidth<=MOBILE){
+          nav.querySelectorAll('.nav-item.open').forEach(function(o){ if(o!==item) closeItem(o); });
+        }
+        openItem(item);
+      }
+    });
+  });
+
+  /* keep an open panel correctly sized if the window changes */
+  addEventListener('resize',function(){
+    nav.querySelectorAll('.nav-item.open').forEach(function(item){
+      var p=panel(item);
+      if(!p) return;
+      p.style.maxHeight = innerWidth<=MOBILE ? p.scrollHeight+'px' : '';
+    });
+  });
+
+  /* desktop: Escape closes, and a click elsewhere closes */
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&innerWidth>MOBILE)
+      nav.querySelectorAll('.nav-item.open').forEach(closeItem);
+  });
 })();
 </script>
 </body>
