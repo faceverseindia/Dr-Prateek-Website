@@ -1057,6 +1057,107 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
     .nav-sub a[aria-current="page"]{color:var(--green)}
     .nav-item.open .nav-sub{padding-bottom:.4rem}
   }
+
+  /* ============ MOBILE DRAWER: clearer, sectioned layout ============ */
+  @media(max-width:940px){
+    nav#nav{
+      width:min(100vw,430px);
+      padding:0 0 calc(1.4rem + env(safe-area-inset-bottom));
+      background:#faf7f2;
+    }
+
+    /* header row: label left, close right, hairline under */
+    .nav-head{
+      padding:calc(1.05rem + env(safe-area-inset-top)) 1.35rem 1.05rem;
+      margin-bottom:0;
+      border-bottom:1px solid var(--line);
+    }
+    .nav-head .nh-k{font-size:.55rem;letter-spacing:.26em;color:var(--muted-d)}
+
+    /* each top-level item is a band separated by a hairline */
+    .nav-item{border-bottom:1px solid var(--line-soft)}
+    .nav-item:last-of-type{border-bottom:1px solid var(--line)}
+
+    nav#nav .nav-top{
+      font-family:var(--f);
+      font-size:.82rem;
+      font-weight:700;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      color:var(--ink);
+      padding:1.15rem 3.4rem 1.15rem 1.35rem;
+      min-height:56px;
+    }
+
+    /* chevron: larger target, thinner stroke, matches the section rhythm */
+    .nav-exp{width:60px;height:56px}
+    .nav-exp .chev{
+      width:9px;height:9px;
+      border-right:1.5px solid var(--ink-soft);
+      border-bottom:1.5px solid var(--ink-soft);
+      transform:rotate(45deg) translate(-2px,-2px);
+    }
+
+    /* sub-links: sentence case, indented, roomier */
+    .nav-sub{background:transparent}
+    .nav-item.open .nav-sub{padding-bottom:.75rem}
+    .nav-sub a{
+      font-family:var(--f);
+      font-size:.86rem;
+      font-weight:400;
+      letter-spacing:.01em;
+      text-transform:none;
+      color:var(--muted);
+      padding:.72rem 1.35rem .72rem 2.35rem;
+      min-height:46px;
+    }
+    .nav-sub a[aria-current="page"]{color:var(--green);font-weight:600}
+
+    /* footer block */
+    .nav-foot{
+      padding:1.35rem 1.35rem 0;
+      border-top:0;
+      margin-top:.2rem;
+    }
+    .nav-foot .nf-k{font-size:.5rem;letter-spacing:.24em;margin-bottom:.7rem}
+
+    /* WhatsApp button — same treatment as the quiz button on the homepage:
+       cream fill, green label, pill, small */
+    .nav-foot .nf-wa{
+      display:inline-flex;
+      width:auto;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      background:#efe9df;
+      color:var(--green);
+      border:1px solid #efe9df;
+      border-radius:100px;
+      padding:.66rem 1.25rem;
+      min-height:0;
+      font-family:var(--f);
+      font-size:.64rem;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .nav-foot .nf-wa svg{width:15px;height:15px;flex:0 0 15px;margin-top:-1px}
+    .nav-foot .nf-wa:active{background:var(--green);color:#efe9df;border-color:var(--green)}
+
+    .nav-ig{margin-top:1.1rem;gap:0}
+    .nav-foot .nav-ig a{
+      font-size:.72rem;color:var(--muted-d);
+      padding:.4rem 0;min-height:32px;
+    }
+    .nav-hint{padding:1.1rem 1.35rem 0;font-size:.5rem;letter-spacing:.2em;color:var(--line)}
+  }
+  @media(max-width:400px){
+    nav#nav .nav-top{font-size:.76rem;padding-left:1.15rem}
+    .nav-sub a{padding-left:2.1rem;font-size:.82rem}
+    .nav-head{padding-left:1.15rem;padding-right:1.15rem}
+    .nav-foot{padding-left:1.15rem;padding-right:1.15rem}
+  }
 </style>
 
 <script type="application/ld+json">
