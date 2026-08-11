@@ -984,7 +984,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
       border-right:1px solid currentColor;border-bottom:1px solid currentColor;
       transform:rotate(45deg);opacity:.55;transition:transform .25s,opacity .25s}
     .nav-item.has-sub:hover > .nav-top::before,
-    .nav-item.has-sub.open > .nav-top::before{opacity:1;transform:rotate(225deg);margin-top:-1px}
+    .nav-item.has-sub:focus-within > .nav-top::before{opacity:1;transform:rotate(225deg);margin-top:-1px}
 
     .nav-sub{
       position:absolute;top:100%;left:50%;transform:translate(-50%,6px);
@@ -994,9 +994,13 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document
       opacity:0;visibility:hidden;pointer-events:none;
       transition:opacity .28s ease,transform .28s cubic-bezier(.2,.7,.2,1),visibility .28s;
       z-index:120}
+    /* desktop opens on hover/focus only — a stray .open class (used by the
+       mobile accordion) must never pin a dropdown open here */
     .nav-item.has-sub:hover .nav-sub,
-    .nav-item.has-sub:focus-within .nav-sub,
-    .nav-item.has-sub.open .nav-sub{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+    .nav-item.has-sub:focus-within .nav-sub{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+    .nav-item.has-sub.open .nav-sub{opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,6px)}
+    .nav-item.has-sub.open:hover .nav-sub,
+    .nav-item.has-sub.open:focus-within .nav-sub{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
     /* bridge the gap so the panel does not close while the pointer travels */
     .nav-item.has-sub::after{content:"";position:absolute;top:100%;left:0;right:0;height:.9rem}
     .nav-sub a{display:block;padding:.6rem 1.15rem;font-family:var(--serif);font-size:.95rem;
@@ -1795,7 +1799,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if(t===here){
       a.setAttribute('aria-current','page');
       var item=a.closest('.nav-item');
-      if(item&&!a.classList.contains('nav-top')) openItem(item,true);
+      /* pre-expanding the parent is a drawer behaviour only */
+      if(item&&!a.classList.contains('nav-top')&&innerWidth<=MOBILE) openItem(item,true);
     }
   });
 
@@ -1831,10 +1836,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   /* keep an open panel correctly sized if the window changes */
   addEventListener('resize',function(){
+    if(innerWidth>MOBILE){
+      /* leaving drawer widths: drop every accordion state */
+      nav.querySelectorAll('.nav-item.open').forEach(closeItem);
+      return;
+    }
     nav.querySelectorAll('.nav-item.open').forEach(function(item){
       var p=panel(item);
-      if(!p) return;
-      p.style.maxHeight = innerWidth<=MOBILE ? p.scrollHeight+'px' : '';
+      if(p) p.style.maxHeight=p.scrollHeight+'px';
     });
   });
 
